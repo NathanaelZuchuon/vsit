@@ -43,9 +43,10 @@ class Model {
 		$req->execute($array_exec);
 	}
 	
-	protected function execute($query) : array {
+	protected function executeSQL($query) : array {
 		$req = $this->db->query($query);
 		$req->execute();
+		
 		return $req->fetchAll();
 	}
 	

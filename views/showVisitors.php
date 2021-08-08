@@ -51,7 +51,7 @@ function userInfos () : string {
                             <div class="operations-box-icon">
                                 <i class="fa fa-file-excel"></i>
                             </div>
-                            <span id="generate-report"><a href="#">Générer le rapport</a></span>
+                            <span id="generate-report"><a href="http://127.0.0.1/bhent_prods/vsit/dashboard/makeReportView">Générer le rapport</a></span>
                         </div>
                     <?php } ?>
     

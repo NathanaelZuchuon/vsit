@@ -135,4 +135,5 @@ main aside #wrapper #infos .infos-box .infos-box-icon .fa, main aside #wrapper #
 
 footer {
     color: white;
+    font-weight: lighter !important;
 }

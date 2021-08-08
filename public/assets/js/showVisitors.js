@@ -11,92 +11,94 @@ function getKeys (arr) {
 }
 
 function handlerResponse (responseObj) {
-    let i = 0;
-    let left = 0;
-    let titles = {
-        'firstname': 'Nom',
-        'lastname': 'Prénom',
-        'sex': 'Sexe',
-        'cni': 'N° de sa CNI',
-        'phone': 'N° de téléphone',
-        'arrived_at': 'Heure d\'arrivée',
-        'left_at': 'Heure de départ',
-    };
+    try {
 
-    let persons = responseObj.personsInfos;
-    let personsKey = getKeys(persons);
+        let left = 0;
+        let titles = {
+            'firstname': 'Nom',
+            'lastname': 'Prénom',
+            'sex': 'Sexe',
+            'cni': 'N° de sa CNI',
+            'phone': 'N° de téléphone',
+            'arrived_at': 'Heure d\'arrivée',
+            'left_at': 'Heure de départ',
+        };
 
-    let visitors = responseObj.visitorsInfos;
-    let visitorsKey = getKeys(visitors);
+        let persons = responseObj.personsInfos;
+        let personsKey = getKeys(persons);
 
-    for ( let visitor of visitors ) {
-        let curr_person = persons[i];
+        let visitors = responseObj.visitorsInfos;
+        let visitorsKey = getKeys(visitors);
 
-        if ( visitor['personID'] !== curr_person['id'] )  {
-            i++;
-        }
-
-        curr_person = persons[i];
-
-        let div_visitor_infos = document.createElement('div');
-        div_visitor_infos.classList.add("visitor-infos");
-        div_visitor_infos.style = 'left: ' + left + 'px;';
-
-        for ( let key of personsKey ) {
-
-            if ( Object.keys(titles).includes(key) ) {
-
-                let div_infos = document.createElement('div');
-                div_infos.classList.add("infos");
-
-                let span_title = document.createElement('span');
-                span_title.classList.add("title");
-                span_title.textContent = titles[key];
-
-                let span_value = document.createElement('span');
-                span_value.classList.add("value");
-                span_value.textContent = curr_person[key];
-
-                div_infos.appendChild(span_title);
-                div_infos.appendChild(span_value);
-
-                div_visitor_infos.appendChild(div_infos);
-
+        for ( let visitor of visitors ) {
+            let i = 0;
+            while ( visitor['personID'] !== persons[i]['id'] )  {
+                i++;
             }
+            let curr_person = persons[i];
 
-        }
+            let div_visitor_infos = document.createElement('div');
+            div_visitor_infos.classList.add("visitor-infos");
+            div_visitor_infos.style = 'left: ' + left + 'px;';
 
-        for ( let key of visitorsKey ) {
+            for ( let key of personsKey ) {
 
-            if ( Object.keys(titles).includes(key) ) {
+                if ( Object.keys(titles).includes(key) ) {
 
-                let div_infos = document.createElement('div');
-                div_infos.classList.add("infos");
+                    let div_infos = document.createElement('div');
+                    div_infos.classList.add("infos");
 
-                let span_title = document.createElement('span');
-                span_title.classList.add("title");
-                span_title.textContent = titles[key];
+                    let span_title = document.createElement('span');
+                    span_title.classList.add("title");
+                    span_title.textContent = titles[key];
 
-                let span_value = document.createElement('span');
-                span_value.classList.add("value");
+                    let span_value = document.createElement('span');
+                    span_value.classList.add("value");
+                    span_value.textContent = curr_person[key];
 
-                if ( titles[key] === 'Heure de départ' ) {
-                    span_value.innerHTML = ( visitor['arrived_at'] === visitor['left_at'] ) ? "<i>Il n'est pas encore sorti.</i>" : visitor[key];
-                } else {
-                    span_value.textContent = visitor[key];
+                    div_infos.appendChild(span_title);
+                    div_infos.appendChild(span_value);
+
+                    div_visitor_infos.appendChild(div_infos);
+
                 }
 
-                div_infos.appendChild(span_title);
-                div_infos.appendChild(span_value);
+            }
 
-                div_visitor_infos.appendChild(div_infos);
+            for ( let key of visitorsKey ) {
+
+                if ( Object.keys(titles).includes(key) ) {
+
+                    let div_infos = document.createElement('div');
+                    div_infos.classList.add("infos");
+
+                    let span_title = document.createElement('span');
+                    span_title.classList.add("title");
+                    span_title.textContent = titles[key];
+
+                    let span_value = document.createElement('span');
+                    span_value.classList.add("value");
+
+                    if ( titles[key] === 'Heure de départ' ) {
+                        span_value.innerHTML = ( visitor['arrived_at'] === visitor['left_at'] ) ? "<i>Il n'est pas encore sorti.</i>" : visitor[key];
+                    } else {
+                        span_value.textContent = visitor[key];
+                    }
+
+                    div_infos.appendChild(span_title);
+                    div_infos.appendChild(span_value);
+
+                    div_visitor_infos.appendChild(div_infos);
+
+                }
 
             }
 
+            slider.appendChild(div_visitor_infos);
+            left += slider.clientWidth;
         }
-
-        slider.appendChild(div_visitor_infos);
-        left += slider.clientWidth;
+    } catch (e) {
+        slider.innerHTML = "<b style='color: white'>Aucune visite aujourd'hui.</b>";
     }
 }
 

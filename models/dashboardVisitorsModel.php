@@ -15,6 +15,10 @@ class dashboardVisitorsModel extends Model {
 		return $this->select($fields, $constraints, $optional_params);
 	}
 	
+	public function exec ($sql) : array {
+		return $this->executeSQL($sql);
+	}
+	
 	public function existenceCheck ($fields, $constraints) : bool {
 		$arrived_at = $this->select(array($fields[0]), $constraints);
 		$left_at = $this->select(array($fields[1]), $constraints);

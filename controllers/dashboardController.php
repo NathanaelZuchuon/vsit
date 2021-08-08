@@ -2,10 +2,12 @@
 
 include_once __DIR__ . '\..\models\dashboardUsersModel.php';
 include_once __DIR__ . '\..\models\dashboardPersonsModel.php';
+include_once __DIR__ . '\..\models\dashboardReportsModel.php';
 include_once __DIR__ . '\..\models\dashboardVisitorsModel.php';
 
 $users = new dashboardUsersModel();
 $persons = new dashboardPersonsModel();
+$reports = new dashboardReportsModel();
 $visitors = new dashboardVisitorsModel();
 
 class dashboardController extends Controller {
@@ -39,6 +41,12 @@ class dashboardController extends Controller {
 	public function showVisitorsView () {
 		if ( $this->checkAccess() ) {
 			include __DIR__ . '\..\views\showVisitors.php';
+		}
+	}
+	
+	public function makeReportView () {
+		if ( $this->checkAccess() ) {
+			include __DIR__ . '\..\views\makeReport.php';
 		}
 	}
 	
@@ -102,11 +110,13 @@ class dashboardController extends Controller {
 			global $persons;
 			global $visitors;
 			
+			$curr_date = date('Y-m-d');
+			
 			$personsInfos = $persons->getInfos(array('id', 'firstname', 'lastname', 'sex', 'cni', 'phone'),
 				null, array('order_by' => 'id', 'order' => 'ASC', 'limit' => null, 'offset' => null));
 			
 			$visitorsInfos = $visitors->getInfos(array('personID', 'arrived_at', 'left_at'),
-				null, array('order_by' => 'personID', 'order' => 'ASC', 'limit' => null, 'offset' => null));
+				array("SUBSTR(arrived_at, 1, 10) = '$curr_date'"), array('order_by' => 'personID', 'order' => 'ASC', 'limit' => null, 'offset' => null));
 			
 			return die( json_encode( array('personsInfos' => $personsInfos, 'visitorsInfos' => $visitorsInfos) ) );
 		}
@@ -119,72 +129,67 @@ class dashboardController extends Controller {
 			}
 		}
 	}
+	
+	public function makeReport () {
+		if ( $this->checkAccess() ) {
+			global $persons;
+			global $reports;
+			global $visitors;
+			
+			$start = str_replace('T', ' ', $_POST['start_at']);
+			$end = str_replace('T', ' ', $_POST['end_at']);
+			
+			$start_at = str_replace('-', '_', $_POST['start_at']);
+			$start_at = str_replace('T', '_', $start_at);
+			
+			$end_at = str_replace('-', '_', $_POST['end_at']);
+			$end_at = str_replace('T', '_', $end_at);
+			
+			$generated_at = date("Y-m-d H-i-s");
+			
+			$personsInfos = $persons->getInfos(array("*"));
+			
+			if ( $start_at == $end_at ) {
+				$filename = 'rapport_du_' . substr($start_at, 0, 10) . '_à_' . substr($start_at, 11, 17) . '.xls';
+			} else {
+				$filename = 'rapport_allant_du_' . substr($start_at, 0, 10) . '_à_' . substr($start_at, 11, 17) . '_au_' . substr($end_at, 0, 10) . '_à_' . substr($end_at, 11, 17) . '.xls';
+			}
+			
+			$output = '<table><tr><th>Name</th><th>Surname</th><th>Sex</th><th>CNI</th><th>Phone</th><th>Arrived at</th><th>Left at</th><th>Observation</th></tr>';
+			
+			foreach ( $personsInfos as $personValue ) {
+				
+				$id = $personValue['id'];
+				$firstname = $personValue['firstname'];
+				$lastname = $personValue['lastname'];
+				$sex = $personValue['sex'];
+				$cni = $personValue['cni'];
+				$phone = $personValue['phone'];
+				
+				$sql = "SELECT personID, arrived_at, left_at, observation FROM visitors WHERE ( arrived_at BETWEEN '$start:00' AND '$end:00' ) AND personID = $id";
+				$visitorsInfos = $visitors->exec($sql);
+				
+				foreach ( $visitorsInfos as $visitorValue ) {
+					$output .= "<tr><td>$firstname</td><td>$lastname</td><td>$sex</td><td>$cni</td><td>$phone</td>";
+					
+					$arrived_at = $visitorValue['arrived_at'];
+					$left_at = $visitorValue['left_at'];
+					$observation = $visitorValue['observation'];
+					
+					$output .= "<td>$arrived_at</td><td>$left_at</td><td>$observation</td></tr>";
+				}
+			}
+			
+			$output .= '</table>';
+			
+			header("Content-Type: application/vnd.ms-excel");
+			header("Content-Disposition: attachment; filename=$filename");
+			header("Pragma: no-cache");
+			header("Expires: 0");
+			
+			echo $output;
+			
+			exit();
+		}
+	}
 }
-
-//	private function generateReport () {
-//		global $persons;
-//		global $visitors;
-//
-//		$personsInfos = $persons->infos(array("*"));
-//
-//		$filename = 'rapport_du_' . date("Y_m_d") . '.xls';
-//
-//		header("Content-Type: application/vnd.ms-excel");
-//		header("Content-Disposition: attachment; filename=$filename");
-//		header("Pragma: no-cache");
-//		header("Expires: 0");
-//
-//		$output = '<table>
-//			<tr>
-//					<th>Name</th>
-//					<th>Surname</th>
-//					<th>Sex</th>
-//					<th>CNI</th>
-//					<th>Phone</th>
-//					<th>Arrived at</th>
-//					<th>Left at</th>
-//					<th>Observation</th>
-//			</tr>';
-//
-//		foreach ( $personsInfos as $personValue ) {
-//
-//			$firstname = $personValue['firstname'];
-//			$lastname = $personValue['lastname'];
-//			$sex = $personValue['sex'];
-//			$cni = $personValue['cni'];
-//			$phone = $personValue['phone'];
-//
-//			$output .= "<tr>
-//					<td>$firstname</td>
-//					<td>$lastname</td>
-//					<td>$sex</td>
-//					<td>$cni</td>
-//					<td>$phone</td>";
-//
-//			$visitorsInfos = $visitors->infos(array("arrived_at", "left_at", "observation"), array("personID = '" . $personValue['id'] . "'"));
-//
-//			foreach ( $visitorsInfos as $visitorValue) {
-//				$arrived_at = $visitorValue['arrived_at'];
-//				$left_at = $visitorValue['left_at'];
-//				$observation = $visitorValue['observation'];
-//
-//				$output .= "
-//					<td>$arrived_at</td>
-//					<td>$left_at</td>
-//					<td>$observation</td>
-//				</tr>";
-//
-//				$output .= "<tr>
-//					<td>$firstname</td>
-//					<td>$lastname</td>
-//					<td>$sex</td>
-//					<td>$cni</td>
-//					<td>$phone</td>";
-//			}
-//		}
-//
-//		$output .= '</table>';
-//		echo $output;
-//
-//		exit();
-//	}
