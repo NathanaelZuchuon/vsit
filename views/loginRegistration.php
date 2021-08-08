@@ -33,7 +33,7 @@
                             <label for="cni">N° de la CNI</label>
                             <div id="cni-error-box"></div>
                         </div>
-                        <input type="text" id="cni" name="cni" required="required">
+                        <input type="number" id="cni" name="cni" required="required">
                     </div>
                 </div>
                 <div class="form-box">

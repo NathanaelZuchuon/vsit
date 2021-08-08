@@ -7,7 +7,7 @@ const form = {
 
 function handlerResponse(responseObj) {
     if (responseObj.ok) {
-        location.href = 'http://127.0.0.1/bhent_prods/vsit/home';
+        location.href = 'http://127.0.0.1/bhent_prods/vsit/dashboard';
     } else {
         while (form.errors_box.firstChild) {
             form.errors_box.removeChild(form.errors_box.firstChild);

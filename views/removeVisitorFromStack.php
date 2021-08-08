@@ -31,7 +31,7 @@ function userInfos () : string {
                         <div class="operations-box-icon">
                             <i class="fa fa-plus"></i>
                         </div>
-                        <span id="addVisitor"><a href="#">Ajouter un visiteur dans la file</a></span>
+                        <span id="addVisitor"><a href="http://127.0.0.1/bhent_prods/vsit/dashboard/addVisitorInStackView">Ajouter un visiteur dans la file</a></span>
                     </div>
                     <div class="operations-box active">
                         <div class="operations-box-icon">
@@ -43,7 +43,7 @@ function userInfos () : string {
                         <div class="operations-box-icon">
                             <i class="fa fa-calendar-day"></i>
                         </div>
-                        <span id="showVisitors"><a href="#">Voir les visites du jour</a></span>
+                        <span id="showVisitors"><a href="http://127.0.0.1/bhent_prods/vsit/dashboard/showVisitorsView">Voir les visites du jour</a></span>
                     </div>
                     <?php if ( $_SESSION['role'] == 'manager' ) { ?>
     
@@ -85,6 +85,7 @@ function userInfos () : string {
     </main>
 
     <script src="http://127.0.0.1/bhent_prods/vsit/public/assets/js/removeVisitorFromStack.js"></script>
+    <script src="http://127.0.0.1/bhent_prods/vsit/public/assets/js/dashboard.js"></script>
     <script src="http://127.0.0.1/bhent_prods/vsit/public/assets/js/cursor.js"></script>
     <?php include __DIR__ . '\..\views\footer.php'; ?>
 </body>

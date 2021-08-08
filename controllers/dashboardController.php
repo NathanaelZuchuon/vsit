@@ -10,87 +10,114 @@ $visitors = new dashboardVisitorsModel();
 
 class dashboardController extends Controller {
 	
-	public function def () {
+	private function checkAccess () : bool {
 		if ( count($_SESSION) == 0 ) {
 			header("Location: http://127.0.0.1/bhent_prods/vsit/home");
-		} else {
+			return false;
+		}
+		return true;
+	}
+	
+	public function def () {
+		if ( $this->checkAccess() ) {
 			$this->addVisitorInStackView();
 		}
 	}
 	
 	public function addVisitorInStackView () {
-		include __DIR__ . '\..\views\addVisitorInStack.php';
+		if ( $this->checkAccess() ) {
+			include __DIR__ . '\..\views\addVisitorInStack.php';
+		}
 	}
 	
 	public function removeVisitorFromStackView () {
-		include __DIR__ . '\..\views\removeVisitorFromStack.php';
+		if ( $this->checkAccess() ) {
+			include __DIR__ . '\..\views\removeVisitorFromStack.php';
+		}
 	}
 	
 	public function showVisitorsView () {
-		include __DIR__ . '\..\views\showVisitors.php';
+		if ( $this->checkAccess() ) {
+			include __DIR__ . '\..\views\showVisitors.php';
+		}
 	}
 	
 	public function addVisitorInStack () {
-		global $users;
-		global $persons;
-		global $visitors;
-		
-		$firstname = $_POST['firstname'];
-		$lastname = $_POST['lastname'];
-		$sex = $_POST['sex'];
-		$cni = $_POST['cni'];
-		$phone = $_POST['phone'];
-		$observation = htmlspecialchars($_POST['observation']);
-		$ok = true;
-		
-		if ( !$persons->existenceCheck(array('cni'), array("cni = '$cni'")) ) {
-			$persons->add(array('firstname', 'lastname', 'sex', 'cni', 'phone'), array($firstname, $lastname, $sex, $cni, $phone));
-		}
-		
-		$cni_user = $_SESSION['cni'];
-		$personID = $persons->id(array("cni = $cni"));
-		$userID = $users->id(array("cni = $cni_user"));
-		
-		if ( $visitors->existenceCheck(array('arrived_at', 'left_at'), array("personID = '$personID'")) ) {
-			$ok = false;
+		if ( $this->checkAccess() ) {
+			
+			global $users;
+			global $persons;
+			global $visitors;
+			
+			$firstname = $_POST['firstname'];
+			$lastname = $_POST['lastname'];
+			$sex = $_POST['sex'];
+			$cni = $_POST['cni'];
+			$phone = $_POST['phone'];
+			$observation = htmlspecialchars($_POST['observation']);
+			$ok = true;
+			
+			if ( !$persons->existenceCheck(array('cni'), array("cni = '$cni'")) ) {
+				$persons->add(array('firstname', 'lastname', 'sex', 'cni', 'phone'), array($firstname, $lastname, $sex, $cni, $phone));
+			}
+			
+			$cni_user = $_SESSION['cni'];
+			$personID = $persons->id(array("cni = $cni"));
+			$userID = $users->id(array("cni = $cni_user"));
+			
+			if ( $visitors->existenceCheck(array('arrived_at', 'left_at'), array("personID = '$personID'")) ) {
+				$ok = false;
+				return die(json_encode(array('ok' => $ok)));
+			}
+			
+			$visitors->add(array('personID', 'userID', 'observation'), array($personID, $userID, $observation));
 			return die(json_encode(array('ok' => $ok)));
 		}
-		
-		$visitors->add(array('personID', 'userID', 'observation'), array($personID, $userID, $observation));
-		return die(json_encode(array('ok' => $ok)));
 		
 	}
 	
 	public function removeVisitorFromStack () {
-		global $persons;
-		global $visitors;
-		
-		$cni = $_POST['cni'];
-		$ok = true;
-		
-		if ( $persons->existenceCheck(array('cni'), array("cni = '$cni'")) ) {
-			$personID = $persons->id(array("cni = $cni"));
-		} else {
-			$ok = false;
+		if ( $this->checkAccess() ) {
+			global $persons;
+			global $visitors;
+			
+			$cni = $_POST['cni'];
+			$ok = true;
+			
+			if ( $persons->existenceCheck(array('cni'), array("cni = '$cni'")) ) {
+				$personID = $persons->id(array("cni = $cni"));
+			} else {
+				$ok = false;
+				return die(json_encode(array('ok' => $ok)));
+			}
+			
+			$visitors->updateInfos(array('left_at'), array(date("Y-m-d H-i-s")), array("personID = $personID", "arrived_at = left_at"));
 			return die(json_encode(array('ok' => $ok)));
 		}
-		
-		$visitors->updateInfos(array('left_at'), array(date("Y-m-d H-i-s")), array("personID = $personID", "arrived_at = left_at"));
-		return die(json_encode(array('ok' => $ok)));
 		
 	}
 	
 	public function showVisitors () {
-		global $persons;
-		global $visitors;
-
-		$personsInfos = $persons->getInfos(array('id', 'firstname', 'lastname', 'sex', 'cni', 'phone'),
-			null, array('order_by' => 'id', 'order' => 'ASC', 'limit' => null, 'offset' => null));
-		
-		$visitorsInfos = $visitors->getInfos(array('personID', 'arrived_at', 'left_at'),
-			null, array('order_by' => 'personID', 'order' => 'ASC', 'limit' => null, 'offset' => null));
-
-		return die( json_encode( array('personsInfos' => $personsInfos, 'visitorsInfos' => $visitorsInfos) ) );
+		if ( $this->checkAccess() ) {
+			global $persons;
+			global $visitors;
+			
+			$personsInfos = $persons->getInfos(array('id', 'firstname', 'lastname', 'sex', 'cni', 'phone'),
+				null, array('order_by' => 'id', 'order' => 'ASC', 'limit' => null, 'offset' => null));
+			
+			$visitorsInfos = $visitors->getInfos(array('personID', 'arrived_at', 'left_at'),
+				null, array('order_by' => 'personID', 'order' => 'ASC', 'limit' => null, 'offset' => null));
+			
+			return die( json_encode( array('personsInfos' => $personsInfos, 'visitorsInfos' => $visitorsInfos) ) );
+		}
+	}
+	
+	public function logout () {
+		if ( $this->checkAccess() ) {
+			foreach ( $_SESSION as $key => $value ) {
+				unset($_SESSION[$key]);
+			}
+		}
 	}
 }
 

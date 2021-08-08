@@ -12,7 +12,6 @@ function getKeys (arr) {
 
 function handlerResponse (responseObj) {
     let i = 0;
-    let k = 0;
     let left = 0;
     let titles = {
         'firstname': 'Nom',
