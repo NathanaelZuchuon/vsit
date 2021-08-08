@@ -49,6 +49,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-repeat: no-repeat;
     flex-direction: column;
     background-image: url('http://127.0.0.1/bhent_prods/vsit/public/assets/icons/home-landing.jpg');
     background-position: center;

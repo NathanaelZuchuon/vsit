@@ -11,7 +11,7 @@ span.addEventListener('click', () => {
         });
         setTimeout(() => {
             location.href = 'http://127.0.0.1/bhent_prods/vsit/home';
-        }, 1000);
+        }, 1500);
     };
 
     request.open('post', 'http://127.0.0.1/bhent_prods/vsit/dashboard/logout');
