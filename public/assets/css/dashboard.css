@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
-:root {}
+:root {
+    --fa-color: rgba(0, 0, 0, 0.5);
+    --active-color: rgba(128, 128, 128, 0.1);
+}
 
 * {
     padding: 0;
@@ -10,141 +13,126 @@
     font-family: "Open Sans", sans-serif;
 }
 
-#cni-user {
-    display: none;
+.active {
+    background-color: var(--active-color);
 }
 
 body {
     width: 100vw;
     height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-image: url('http://127.0.0.1/bhent_prods/vsit/public/assets/icons/home.jpg');
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
     overflow: hidden !important;
 }
 
-#loader {
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    top: 50vh;
-    left: 50vw;
-    display: none;
-}
-
 main {
-    width: 1112px;
-    height: 100%;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    padding-bottom: 20px;
+    width: 90%;
+    height: 85%;
+    background-color: rgba(125, 125, 125, 0.8);
+    border: none;
+    border-radius: 20px 0 0 20px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: row;
 }
 
-main form {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-main form input, #btn, textarea {
-    width: 200px;
-    margin: 10px 5px;
-    border: 1px solid rgba(91, 93, 99, 0.5);
-    background-color: rgba(91, 93, 99, 0.1);
-    outline: none;
-    border-radius: 5px;
-    height: 30px;
-    padding: 10px;
-}
-
-textarea {
-    height: 60px;
-}
-
-main #board {
-    width: 100%;
+main aside {
     height: 100%;
-    display: none;
-    flex-wrap: wrap;
-    overflow-y: scroll;
-}
-
-main #board .board-box {
+    background-color: white;
+    width: 490px;
+    border-radius: 20px 0 0 20px;
+    font-size: 14px;
+    color: var(--fa-color);
+    padding: 10px 20px;
     display: flex;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
-    border: 1px solid #5b5d63;
-    border-radius: 10px;
-    height: fit-content;
-    margin: 20px;
-    padding: 20px 25px;
+    font-weight: bold;
 }
 
-main #board .board-box .field {
+main aside img {
+    width: 10%;
+    height: 10%;
+    align-self: center;
+}
+
+main aside #wrapper {
+    width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-direction: row;
+    flex-direction: column;
+}
+
+main #content {
     width: 100%;
-    margin-bottom: 5px;
+    height: 100%;
+    overflow-x: hidden;
 }
 
-main #board .board-box .datetime:nth-child(n+1) {
-    margin-top: 20px;
-    margin-bottom: 0 !important;
+/* ------ */
+main aside #wrapper #operations .operations-box .operations-box-icon .fa {
+    background-color: unset !important;
+}
+/* ------ */
+
+/* ------ */
+main aside #wrapper #infos, main aside #wrapper #operations {
+    width: 100%;
 }
 
-main #board .board-box .datetime:nth-child(2n+1) {
-    margin-bottom: 20px !important;
+main aside #wrapper #infos .infos-box, main aside #wrapper #operations .operations-box {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 1fr;
+    padding: 10px 5px;
+    transition: background-color .5s;
+    border-radius: 10px;
+    margin: 5px 0;
 }
 
-main #board .board-box .field span:nth-child(1) {
-    font-weight: bold;
-    margin-right: 20px;
+main aside #wrapper #infos .infos-box:hover, main aside #wrapper #operations .operations-box:hover {
+    background-color: var(--active-color);
 }
 
-#btn {
+main aside #wrapper #infos .infos-box span, main aside #wrapper #operations .operations-box span {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+main aside #wrapper #infos .infos-box span a, main aside #wrapper #operations .operations-box span a {
+    text-decoration: none;
+    color: inherit;
+}
+
+main aside #wrapper #infos .infos-box .infos-box-icon, main aside #wrapper #operations .operations-box .operations-box-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
-    color: white;
-    border: none !important;
-    transition: background-color 1s;
-    background-color: rgba(30, 189, 135, 0.8);
 }
 
-#btn:hover {
-    background-color: #1ebd87;
+main aside #wrapper #infos .infos-box .infos-box-icon .fa, main aside #wrapper #operations .operations-box .operations-box-icon .fa {
+    width: 30px;
+    height: 30px;
+    background-color: #cecece;
+    color: var(--fa-color);
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-
-select {
-    border: 1px solid rgba(90, 90, 100, 0.5);
-    border-radius: 5px;
-    width: 50%;
-    margin: 5px 0;
-    padding: 5px 7px;
-    outline: none;
-}
-
-#btn .fa {
-    margin-left: 10px;
-}
+/* ------ */
 
 footer {
-    font-family: "Roboto", sans-serif;
-    font-weight: bold;
-}
-
-#report {
-    display: none;
-}
-
-button {
-    border: none !important;
-    background-color: initial !important;
-    width: 100%;
+    color: white;
 }

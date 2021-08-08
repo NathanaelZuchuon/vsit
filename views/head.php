@@ -1,7 +1,7 @@
 <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta name="author" content="Nathanaël Zuchuon">
+    <meta name="author" content="Zuchuon Kougang Nathanaël Michel">
     <meta name="description" content="Join the most ergonomic visit management platform">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://vsit.com/home">

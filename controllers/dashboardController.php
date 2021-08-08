@@ -14,165 +14,150 @@ class dashboardController extends Controller {
 		if ( count($_SESSION) == 0 ) {
 			header("Location: http://127.0.0.1/bhent_prods/vsit/home");
 		} else {
-			$this->dashboardView();
+			$this->addVisitorInStackView();
 		}
 	}
 	
-	private function dashboardView () {
-		include __DIR__ . '\..\views\dashboard.php';
+	public function addVisitorInStackView () {
+		include __DIR__ . '\..\views\addVisitorInStack.php';
 	}
 	
-	public function generateReport () {
-		global $persons;
-		global $visitors;
-		
-		$personsInfos = $persons->infos(array("*"));
-		
-		$filename = 'rapport_du_' . date("Y_m_d") . '.xls';
-		
-		header("Content-Type: application/vnd.ms-excel");
-		header("Content-Disposition: attachment; filename=$filename");
-		header("Pragma: no-cache");
-		header("Expires: 0");
-		
-		$output = '<table>
-			<tr>
-					<th>Name</th>
-					<th>Surname</th>
-					<th>Sex</th>
-					<th>CNI</th>
-					<th>Phone</th>
-					<th>Arrived at</th>
-					<th>Left at</th>
-					<th>Observation</th>
-			</tr>';
-		
-		foreach ( $personsInfos as $personValue ) {
-			
-			$firstname = $personValue['firstname'];
-			$lastname = $personValue['lastname'];
-			$sex = $personValue['sex'];
-			$cni = $personValue['cni'];
-			$phone = $personValue['phone'];
-			
-			$output .= "<tr>
-					<td>$firstname</td>
-					<td>$lastname</td>
-					<td>$sex</td>
-					<td>$cni</td>
-					<td>$phone</td>";
-
-			$visitorsInfos = $visitors->infos(array("arrived_at", "left_at", "observation"), array("personID = '" . $personValue['id'] . "'"));
-
-			foreach ( $visitorsInfos as $visitorValue) {
-				$arrived_at = $visitorValue['arrived_at'];
-				$left_at = $visitorValue['left_at'];
-				$observation = $visitorValue['observation'];
-				
-				$output .= "
-					<td>$arrived_at</td>
-					<td>$left_at</td>
-					<td>$observation</td>
-				</tr>";
-				
-				$output .= "<tr>
-					<td>$firstname</td>
-					<td>$lastname</td>
-					<td>$sex</td>
-					<td>$cni</td>
-					<td>$phone</td>";
-			}
-		}
-		
-		$output .= '</table>';
-		echo $output;
-		
-		exit();
+	public function removeVisitorFromStackView () {
+		include __DIR__ . '\..\views\removeVisitorFromStack.php';
 	}
 	
-	public function addVisitor () {
+	public function showVisitorsView () {
+		include __DIR__ . '\..\views\showVisitors.php';
+	}
+	
+	public function addVisitorInStack () {
 		global $users;
 		global $persons;
 		global $visitors;
 		
 		$firstname = $_POST['firstname'];
-	    $lastname = $_POST['lastname'];
-	    $sex = $_POST['sex'];
-	    $cni = $_POST['cni'];
+		$lastname = $_POST['lastname'];
+		$sex = $_POST['sex'];
+		$cni = $_POST['cni'];
 		$phone = $_POST['phone'];
-		$left_at = $_POST['left_at'];
-		$arrived_at = $_POST['arrived_at'];
-		$observation = $_POST['observation'];
+		$observation = htmlspecialchars($_POST['observation']);
+		$ok = true;
 		
 		if ( !$persons->existenceCheck(array('cni'), array("cni = '$cni'")) ) {
-			$persons->add(array('firstname', 'lastname', 'sex', 'cni', 'phone', 'timestamp'), array($firstname, $lastname, $sex, $cni, $phone, $arrived_at));
+			$persons->add(array('firstname', 'lastname', 'sex', 'cni', 'phone'), array($firstname, $lastname, $sex, $cni, $phone));
 		}
 		
-		$cni_user = $_POST['cni_user'];
-		$personID = $persons->id(array("cni = '$cni'"));
-		$userID = $users->id(array("cni = '$cni_user'"));
+		$cni_user = $_SESSION['cni'];
+		$personID = $persons->id(array("cni = $cni"));
+		$userID = $users->id(array("cni = $cni_user"));
 		
-		$visitors->add(array('personID', 'userID', 'arrived_at', 'left_at', 'observation'), array($personID, $userID, $arrived_at, $left_at, $observation));
+		if ( $visitors->existenceCheck(array('arrived_at', 'left_at'), array("personID = '$personID'")) ) {
+			$ok = false;
+			return die(json_encode(array('ok' => $ok)));
+		}
+		
+		$visitors->add(array('personID', 'userID', 'observation'), array($personID, $userID, $observation));
+		return die(json_encode(array('ok' => $ok)));
+		
+	}
+	
+	public function removeVisitorFromStack () {
+		global $persons;
+		global $visitors;
+		
+		$cni = $_POST['cni'];
+		$ok = true;
+		
+		if ( $persons->existenceCheck(array('cni'), array("cni = '$cni'")) ) {
+			$personID = $persons->id(array("cni = $cni"));
+		} else {
+			$ok = false;
+			return die(json_encode(array('ok' => $ok)));
+		}
+		
+		$visitors->updateInfos(array('left_at'), array(date("Y-m-d H-i-s")), array("personID = $personID", "arrived_at = left_at"));
+		return die(json_encode(array('ok' => $ok)));
 		
 	}
 	
 	public function showVisitors () {
 		global $persons;
 		global $visitors;
+
+		$personsInfos = $persons->getInfos(array('id', 'firstname', 'lastname', 'sex', 'cni', 'phone'),
+			null, array('order_by' => 'id', 'order' => 'ASC', 'limit' => null, 'offset' => null));
 		
-		$personsInfos = $persons->infos(array('id', 'firstname', 'lastname', 'sex', 'cni', 'phone'));
-		
-		foreach ( $personsInfos as $values ) {
-			$firstname = $values['firstname'];
-			$lastname = $values['lastname'];
-			$sex = $values['sex'] == 'male' ? 'Homme' : 'Femme';
-			$cni = $values['cni'];
-			$phone = $values['phone'];
-			$id = $values['id'];
-			
-			$visitorsInfos = $visitors->infos(array('arrived_at', 'left_at'), array("personID = $id"));
-			
-			echo "
-			<div class='board-box'>
-			    <div class='field''>
-			        <span>Nom:</span>
-			        <span>$firstname</span>
-			    </div>
-			    <div class='field'>
-			        <span>Prénom:</span>
-			        <span>$lastname</span>
-			    </div>
-			    <div class='field'>
-			        <span>Sexe:</span>
-			        <span>$sex</span>
-			    </div>
-			    <div class='field'>
-			        <span>N° de la CNI:</span>
-			        <span>$cni</span>
-			    </div>
-			    <div class='field'>
-			        <span>Numéro:</span>
-			        <span>$phone</span>
-			    </div>
-";
-			foreach ( $visitorsInfos as $values ) {
-				$arrived_at = $values['arrived_at'];
-				$left_at = $values['left_at'];
-				
-				echo "
-				<div class='field datetime'>
-			        <span>Heure d'arrivée:</span>
-			        <span>$arrived_at</span>
-			    </div>
-			    <div class='field datetime'>
-			        <span>Heure de départ:</span>
-			        <span>$left_at</span>
-			    </div>
-			";
-			}
-			
-			echo "</div>";
-		}
-		
+		$visitorsInfos = $visitors->getInfos(array('personID', 'arrived_at', 'left_at'),
+			null, array('order_by' => 'personID', 'order' => 'ASC', 'limit' => null, 'offset' => null));
+
+		return die( json_encode( array('personsInfos' => $personsInfos, 'visitorsInfos' => $visitorsInfos) ) );
 	}
 }
+
+//	private function generateReport () {
+//		global $persons;
+//		global $visitors;
+//
+//		$personsInfos = $persons->infos(array("*"));
+//
+//		$filename = 'rapport_du_' . date("Y_m_d") . '.xls';
+//
+//		header("Content-Type: application/vnd.ms-excel");
+//		header("Content-Disposition: attachment; filename=$filename");
+//		header("Pragma: no-cache");
+//		header("Expires: 0");
+//
+//		$output = '<table>
+//			<tr>
+//					<th>Name</th>
+//					<th>Surname</th>
+//					<th>Sex</th>
+//					<th>CNI</th>
+//					<th>Phone</th>
+//					<th>Arrived at</th>
+//					<th>Left at</th>
+//					<th>Observation</th>
+//			</tr>';
+//
+//		foreach ( $personsInfos as $personValue ) {
+//
+//			$firstname = $personValue['firstname'];
+//			$lastname = $personValue['lastname'];
+//			$sex = $personValue['sex'];
+//			$cni = $personValue['cni'];
+//			$phone = $personValue['phone'];
+//
+//			$output .= "<tr>
+//					<td>$firstname</td>
+//					<td>$lastname</td>
+//					<td>$sex</td>
+//					<td>$cni</td>
+//					<td>$phone</td>";
+//
+//			$visitorsInfos = $visitors->infos(array("arrived_at", "left_at", "observation"), array("personID = '" . $personValue['id'] . "'"));
+//
+//			foreach ( $visitorsInfos as $visitorValue) {
+//				$arrived_at = $visitorValue['arrived_at'];
+//				$left_at = $visitorValue['left_at'];
+//				$observation = $visitorValue['observation'];
+//
+//				$output .= "
+//					<td>$arrived_at</td>
+//					<td>$left_at</td>
+//					<td>$observation</td>
+//				</tr>";
+//
+//				$output .= "<tr>
+//					<td>$firstname</td>
+//					<td>$lastname</td>
+//					<td>$sex</td>
+//					<td>$cni</td>
+//					<td>$phone</td>";
+//			}
+//		}
+//
+//		$output .= '</table>';
+//		echo $output;
+//
+//		exit();
+//	}

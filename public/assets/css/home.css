@@ -58,7 +58,7 @@ main {
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
     letter-spacing: 1.1rem;
-    font-weight: bold;
+    font-weight: bolder;
 }
 
 .box nav button {

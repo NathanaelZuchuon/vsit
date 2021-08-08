@@ -48,8 +48,8 @@ class loginController extends Controller {
 	public function checkLoginRegistration () {
 		include_once __DIR__ . '\..\models\loginRegistrationModel.php';
 		
-		$firstname = $_POST['firstname'];
-		$lastname = $_POST['lastname'];
+		$firstname = strtolower($_POST['firstname']);
+		$lastname = strtolower($_POST['lastname']);
 		$cni = $_POST['cni'];
 		$role = $_POST['role'] ?? 'guard';
 		$pseudo = $_POST['pseudo'];

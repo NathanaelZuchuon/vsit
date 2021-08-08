@@ -18,8 +18,8 @@ class dashboardPersonsModel extends Model {
 		return $this->getId($constraints);
 	}
 	
-	public function infos ($fields, $constraints=null) : array {
-		return $this->select($fields, $constraints);
+	public function getInfos ($fields, $constraints=null, $optional_params=null) : array {
+		return $this->select($fields, $constraints, $optional_params);
 	}
 
 }

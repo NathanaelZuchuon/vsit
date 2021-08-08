@@ -14,12 +14,12 @@ function userInfos () : string {
 	<?php include __DIR__ . '\..\views\head.php'; ?>
     <title>Dashboard | VSIT</title>
     <link rel="stylesheet" href="http://127.0.0.1/bhent_prods/vsit/public/assets/css/dashboard.css">
-    <link rel="stylesheet" href="http://127.0.0.1/bhent_prods/vsit/public/assets/css/showVisitors.css">
+    <link rel="stylesheet" href="http://127.0.0.1/bhent_prods/vsit/public/assets/css/removeVisitorFromStack.css">
 </head>
 
 <body>
     <?php include __DIR__ . '\..\views\cursor.php'; ?>
-
+    
     <main>
         <aside>
             <img src="http://127.0.0.1/bhent_prods/vsit/public/assets/icons/vsit-logo.svg">
@@ -33,17 +33,17 @@ function userInfos () : string {
                         </div>
                         <span id="addVisitor"><a href="#">Ajouter un visiteur dans la file</a></span>
                     </div>
-                    <div class="operations-box">
+                    <div class="operations-box active">
                         <div class="operations-box-icon">
                             <i class="fa fa-minus"></i>
                         </div>
-                        <span id="removeVisitor"><a href="#">Le retirer de la file</a></span>
+                        <span id="removeVisitor">Le retirer de la file</span>
                     </div>
-                    <div class="operations-box active">
+                    <div class="operations-box">
                         <div class="operations-box-icon">
                             <i class="fa fa-calendar-day"></i>
                         </div>
-                        <span id="showVisitors">Voir les visites du jour</span>
+                        <span id="showVisitors"><a href="#">Voir les visites du jour</a></span>
                     </div>
                     <?php if ( $_SESSION['role'] == 'manager' ) { ?>
     
@@ -76,16 +76,15 @@ function userInfos () : string {
         </aside>
     
         <section id="content">
-            <i class="fa fa-chevron-circle-left chevron" id="chevron-left"></i>
-            
-            <div id="slider"></div>
-            
-            <i class="fa fa-chevron-circle-right chevron" id="chevron-right"></i>
+            <form id="form" method="post" autocomplete="off">
+                <input type="number" id="cni" name="cni" required placeholder="Entrer le n° de sa CNI">
+                <button type="submit" id="btn">Retirer<i class="fa fa-minus"></i></button>
+            </form>
         </section>
     
     </main>
 
-    <script src="http://127.0.0.1/bhent_prods/vsit/public/assets/js/showVisitors.js"></script>
+    <script src="http://127.0.0.1/bhent_prods/vsit/public/assets/js/removeVisitorFromStack.js"></script>
     <script src="http://127.0.0.1/bhent_prods/vsit/public/assets/js/cursor.js"></script>
     <?php include __DIR__ . '\..\views\footer.php'; ?>
 </body>
