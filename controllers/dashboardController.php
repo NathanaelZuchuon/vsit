@@ -1,9 +1,9 @@
 <?php
 
-include_once __DIR__ . '\..\models\dashboardUsersModel.php';
-include_once __DIR__ . '\..\models\dashboardPersonsModel.php';
-include_once __DIR__ . '\..\models\dashboardReportsModel.php';
-include_once __DIR__ . '\..\models\dashboardVisitorsModel.php';
+include_once __DIR__ . '/../models/dashboardUsersModel.php';
+include_once __DIR__ . '/../models/dashboardPersonsModel.php';
+include_once __DIR__ . '/../models/dashboardReportsModel.php';
+include_once __DIR__ . '/../models/dashboardVisitorsModel.php';
 
 $users = new dashboardUsersModel();
 $persons = new dashboardPersonsModel();
@@ -28,25 +28,25 @@ class dashboardController extends Controller {
 	
 	public function addVisitorInStackView () {
 		if ( $this->checkAccess() ) {
-			include __DIR__ . '\..\views\addVisitorInStack.php';
+			include __DIR__ . '/../views/addVisitorInStack.php';
 		}
 	}
 	
 	public function removeVisitorFromStackView () {
 		if ( $this->checkAccess() ) {
-			include __DIR__ . '\..\views\removeVisitorFromStack.php';
+			include __DIR__ . '/../views/removeVisitorFromStack.php';
 		}
 	}
 	
 	public function showVisitorsView () {
 		if ( $this->checkAccess() ) {
-			include __DIR__ . '\..\views\showVisitors.php';
+			include __DIR__ . '/../views/showVisitors.php';
 		}
 	}
 	
 	public function makeReportView () {
 		if ( $this->checkAccess() ) {
-			include __DIR__ . '\..\views\makeReport.php';
+			include __DIR__ . '/../views/makeReport.php';
 		}
 	}
 	

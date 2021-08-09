@@ -2,19 +2,19 @@
 <html lang="fr">
 
 <head>
-	<?php include __DIR__ . '\..\views\head.php'; ?>
+	<?php include __DIR__ . '/../views/head.php'; ?>
     <title>Home | VSIT</title>
-    <link rel="stylesheet" href=<?=$host . "public/assets/css/home.css"?>>
+    <link rel="stylesheet" href=<?="http://vsit.bhent.org/" . "public/assets/css/home.css"?>>
 </head>
 
 <body>
-    <?php include __DIR__ . '\..\views\cursor.php'; ?>
+    <?php include __DIR__ . '/../views/cursor.php'; ?>
     
     <nav id="nav-bar">
-        <img src=<?=$host . "public/assets/icons/vsit-logo.svg"?>>
+        <img src=<?="http://vsit.bhent.org/" . "public/assets/icons/vsit-logo.svg"?>>
         <ul>
-            <li><a href=<?=$host . "login/"?>>Se connecter</a></li>
-            <li class="focus"><a href=<?=$host . "login/registration"?>>S'enregistrer</a></li>
+            <li><a href=<?="http://vsit.bhent.org/" . "login/"?>>Se connecter</a></li>
+            <li class="focus"><a href=<?="http://vsit.bhent.org/" . "login/registration"?>>S'enregistrer</a></li>
         </ul>
     </nav>
     
@@ -24,9 +24,9 @@
         <p>Security</p>
     </section>
     
-    <script src=<?=$host . "public/assets/js/home.js"?>></script>
-    <script src=<?=$host . "public/assets/js/cursor.js"?>></script>
-    <?php include __DIR__ . '\..\views\footer.php'; ?>
+    <script src=<?="http://vsit.bhent.org/" . "public/assets/js/home.js"?>></script>
+    <script src=<?="http://vsit.bhent.org/" . "public/assets/js/cursor.js"?>></script>
+    <?php include __DIR__ . '/../views/footer.php'; ?>
 </body>
 
 </html>

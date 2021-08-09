@@ -10,11 +10,11 @@ span.addEventListener('click', () => {
             icon: "success",
         });
         setTimeout(() => {
-            location.href = 'https://vsit.bhent.org/home/';
+            location.href = 'http://vsit.bhent.org/home/';
         }, 1500);
     };
 
-    request.open('post', 'https://vsit.bhent.org/dashboard/logout/');
+    request.open('post', 'http://vsit.bhent.org/dashboard/logout/');
     request.setRequestHeader('Content', 'application/x-www-form-urlencoded');
     request.send();
 });

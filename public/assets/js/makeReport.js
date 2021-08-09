@@ -14,6 +14,6 @@ form.form.onsubmit = () => {
         });
         return false;
     } else {
-        form.form.action = 'https://vsit.bhent.org/dashboard/makeReport/';
+        form.form.action = 'http://vsit.bhent.org/dashboard/makeReport/';
     }
 }

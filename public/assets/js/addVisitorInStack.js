@@ -66,7 +66,7 @@ form.form.addEventListener('submit', (event) => {
         formData.append("phone", form.phone.value);
         formData.append("observation", form.observation.value);
 
-        request.open('post', 'https://vsit.bhent.org/dashboard/addVisitorInStack/');
+        request.open('post', 'http://vsit.bhent.org/dashboard/addVisitorInStack/');
         request.setRequestHeader('Content', 'application/x-www-form-urlencoded');
         request.send(formData);
     }

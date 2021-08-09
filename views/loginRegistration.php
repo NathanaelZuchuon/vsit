@@ -2,17 +2,17 @@
 <html lang="fr">
 
 <head>
-    <?php include __DIR__ . '\..\views\head.php'; ?>
+    <?php include __DIR__ . '/../views/head.php'; ?>
 	<title>Login Registration | VSIT</title>
-    <link rel="stylesheet" href=<?=$host . "public/assets/css/loginRegistration.css"?>>
+    <link rel="stylesheet" href=<?="http://vsit.bhent.org/" . "public/assets/css/loginRegistration.css"?>>
 </head>
 
 <body>
-    <?php include __DIR__ . '\..\views\cursor.php'; ?>
+    <?php include __DIR__ . '/../views/cursor.php'; ?>
 
     <main id="wrapper">
         <section id="registration-icon">
-            <img src=<?=$host . "public/assets/icons/registration-icon.svg"?>>
+            <img src=<?="http://vsit.bhent.org/" . "public/assets/icons/registration-icon.svg"?>>
         </section>
         <section id="registration-form">
             <h1>Registration</h1>
@@ -61,9 +61,9 @@
         </section>
     </main>
     
-    <script src=<?=$host . "public/assets/js/cursor.js"?>></script>
-    <script src=<?=$host . "public/assets/js/loginRegistration.js"?>></script>
-    <?php include __DIR__ . '\..\views\footer.php'; ?>
+    <script src=<?="http://vsit.bhent.org/" . "public/assets/js/cursor.js"?>></script>
+    <script src=<?="http://vsit.bhent.org/" . "public/assets/js/loginRegistration.js"?>></script>
+    <?php include __DIR__ . '/../views/footer.php'; ?>
 </body>
 
 </html>

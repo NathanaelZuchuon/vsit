@@ -11,18 +11,18 @@ function userInfos () : string {
 <html lang="fr">
 
 <head>
-	<?php include __DIR__ . '\..\views\head.php'; ?>
+	<?php include __DIR__ . '/../views/head.php'; ?>
 	<title>Dashboard | VSIT</title>
-	<link rel="stylesheet" href=<?=$host . "public/assets/css/dashboard.css"?>>
-	<link rel="stylesheet" href=<?=$host . "public/assets/css/makeReport.css"?>>
+	<link rel="stylesheet" href=<?="http://vsit.bhent.org/" . "public/assets/css/dashboard.css"?>>
+	<link rel="stylesheet" href=<?="http://vsit.bhent.org/" . "public/assets/css/makeReport.css"?>>
 </head>
 
 <body>
-    <?php include __DIR__ . '\..\views\cursor.php'; ?>
+    <?php include __DIR__ . '/../views/cursor.php'; ?>
     
     <main>
         <aside>
-            <img src=<?=$host . "public/assets/icons/vsit-logo.svg"?>>
+            <img src=<?="http://vsit.bhent.org/" . "public/assets/icons/vsit-logo.svg"?>>
     
             <div id="wrapper">
     
@@ -31,19 +31,19 @@ function userInfos () : string {
                         <div class="operations-box-icon">
                             <i class="fa fa-plus"></i>
                         </div>
-                        <span id="addVisitor"><a href=<?=$host . "dashboard/addVisitorInStackView"?>>Ajouter un visiteur dans la file</a></span>
+                        <span id="addVisitor"><a href=<?="http://vsit.bhent.org/" . "dashboard/addVisitorInStackView"?>>Ajouter un visiteur dans la file</a></span>
                     </div>
                     <div class="operations-box">
                         <div class="operations-box-icon">
                             <i class="fa fa-minus"></i>
                         </div>
-                        <span id="removeVisitor"><a href=<?=$host . "dashboard/removeVisitorFromStackView"?>>Le retirer de la file</a></span>
+                        <span id="removeVisitor"><a href=<?="http://vsit.bhent.org/" . "dashboard/removeVisitorFromStackView"?>>Le retirer de la file</a></span>
                     </div>
                     <div class="operations-box">
                         <div class="operations-box-icon">
                             <i class="fa fa-calendar-day"></i>
                         </div>
-                        <span id="showVisitors"><a href=<?=$host . "dashboard/showVisitorsView"?>>Voir les visites du jour</a></span>
+                        <span id="showVisitors"><a href=<?="http://vsit.bhent.org/" . "dashboard/showVisitorsView"?>>Voir les visites du jour</a></span>
                     </div>
                     <?php if ( $_SESSION['role'] == 'manager' ) { ?>
     
@@ -85,10 +85,10 @@ function userInfos () : string {
     
     </main>
 
-    <script src=<?=$host . "public/assets/js/makeReport.js"?>></script>
-    <script src=<?=$host . "public/assets/js/dashboard.js"?>></script>
-    <script src=<?=$host . "public/assets/js/cursor.js"?>></script>
-	<?php include __DIR__ . '\..\views\footer.php'; ?>
+    <script src=<?="http://vsit.bhent.org/" . "public/assets/js/makeReport.js"?>></script>
+    <script src=<?="http://vsit.bhent.org/" . "public/assets/js/dashboard.js"?>></script>
+    <script src=<?="http://vsit.bhent.org/" . "public/assets/js/cursor.js"?>></script>
+	<?php include __DIR__ . '/../views/footer.php'; ?>
 </body>
 
 </html>

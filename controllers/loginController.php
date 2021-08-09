@@ -3,7 +3,7 @@
 class loginController extends Controller {
 	
 	public function def () {
-		include __DIR__ . '\..\views\login.php';
+		include __DIR__ . '/../views/login.php';
 	}
 	
 	private function passHacker ($password, $action='encrypt') : string {
@@ -11,7 +11,7 @@ class loginController extends Controller {
 	}
 	
 	public function checkLogin () {
-		include_once __DIR__ . '\..\models\loginModel.php';
+		include_once __DIR__ . '/../models/loginModel.php';
 		
 		$pseudo = $_POST['pseudo'];
 		
@@ -40,11 +40,11 @@ class loginController extends Controller {
 	}
 	
 	public function registration () {
-		include __DIR__ . '\..\views\loginRegistration.php';
+		include __DIR__ . '/../views/loginRegistration.php';
 	}
 	
 	public function checkLoginRegistration () {
-		include_once __DIR__ . '\..\models\loginRegistrationModel.php';
+		include_once __DIR__ . '/../models/loginRegistrationModel.php';
 		
 		$firstname = strtolower($_POST['firstname']);
 		$lastname = strtolower($_POST['lastname']);
