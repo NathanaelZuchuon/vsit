@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+$host = "https://vsit.bhent.org/";
 
 require_once __DIR__ . '\core\Model.php';
 require_once __DIR__ . '\core\Router.php';

@@ -1,6 +1,6 @@
 <?php
 function userInfos () : string {
-	$output = ucwords($_SESSION[ 'firstname' ] . ' ' . $_SESSION[ 'lastname' ] );
+	$output = ucwords($_SESSION['firstname'] . ' ' . $_SESSION['lastname'] );
 	$output .= ' - ';
 	$output .= ( $_SESSION['role'] == 'manager') ? 'Manager' : 'Agent de sécurité';
 	
@@ -13,8 +13,8 @@ function userInfos () : string {
 <head>
 	<?php include __DIR__ . '\..\views\head.php'; ?>
 	<title>Dashboard | VSIT</title>
-	<link rel="stylesheet" href="http://127.0.0.1/bhent_prods/vsit/public/assets/css/dashboard.css">
-	<link rel="stylesheet" href="http://127.0.0.1/bhent_prods/vsit/public/assets/css/makeReport.css">
+	<link rel="stylesheet" href=<?=$host . "public/assets/css/dashboard.css"?>>
+	<link rel="stylesheet" href=<?=$host . "public/assets/css/makeReport.css"?>>
 </head>
 
 <body>
@@ -22,7 +22,7 @@ function userInfos () : string {
     
     <main>
         <aside>
-            <img src="http://127.0.0.1/bhent_prods/vsit/public/assets/icons/vsit-logo.svg">
+            <img src=<?=$host . "public/assets/icons/vsit-logo.svg"?>>
     
             <div id="wrapper">
     
@@ -31,19 +31,19 @@ function userInfos () : string {
                         <div class="operations-box-icon">
                             <i class="fa fa-plus"></i>
                         </div>
-                        <span id="addVisitor"><a href="http://127.0.0.1/bhent_prods/vsit/dashboard/addVisitorInStackView">Ajouter un visiteur dans la file</a></span>
+                        <span id="addVisitor"><a href=<?=$host . "dashboard/addVisitorInStackView"?>>Ajouter un visiteur dans la file</a></span>
                     </div>
                     <div class="operations-box">
                         <div class="operations-box-icon">
                             <i class="fa fa-minus"></i>
                         </div>
-                        <span id="removeVisitor"><a href="http://127.0.0.1/bhent_prods/vsit/dashboard/removeVisitorFromStackView">Le retirer de la file</a></span>
+                        <span id="removeVisitor"><a href=<?=$host . "dashboard/removeVisitorFromStackView"?>>Le retirer de la file</a></span>
                     </div>
                     <div class="operations-box">
                         <div class="operations-box-icon">
                             <i class="fa fa-calendar-day"></i>
                         </div>
-                        <span id="showVisitors"><a href="http://127.0.0.1/bhent_prods/vsit/dashboard/showVisitorsView">Voir les visites du jour</a></span>
+                        <span id="showVisitors"><a href=<?=$host . "dashboard/showVisitorsView"?>>Voir les visites du jour</a></span>
                     </div>
                     <?php if ( $_SESSION['role'] == 'manager' ) { ?>
     
@@ -85,9 +85,9 @@ function userInfos () : string {
     
     </main>
 
-    <script src="http://127.0.0.1/bhent_prods/vsit/public/assets/js/makeReport.js"></script>
-	<script src="http://127.0.0.1/bhent_prods/vsit/public/assets/js/dashboard.js"></script>
-	<script src="http://127.0.0.1/bhent_prods/vsit/public/assets/js/cursor.js"></script>
+    <script src=<?=$host . "public/assets/js/makeReport.js"?>></script>
+    <script src=<?=$host . "public/assets/js/dashboard.js"?>></script>
+    <script src=<?=$host . "public/assets/js/cursor.js"?>></script>
 	<?php include __DIR__ . '\..\views\footer.php'; ?>
 </body>
 

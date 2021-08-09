@@ -14,7 +14,7 @@ class dashboardController extends Controller {
 	
 	private function checkAccess () : bool {
 		if ( count($_SESSION) == 0 ) {
-			header("Location: http://127.0.0.1/bhent_prods/vsit/home");
+			header("Location: https://vsit.bhent.org/home");
 			return false;
 		}
 		return true;

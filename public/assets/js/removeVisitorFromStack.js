@@ -40,7 +40,7 @@ form.form.addEventListener('submit', (event) => {
     const formData = new FormData();
     formData.append("cni", form.cni.value);
 
-    request.open('post', 'http://127.0.0.1/bhent_prods/vsit/dashboard/removeVisitorFromStack');
+    request.open('post', 'https://vsit.bhent.org/dashboard/removeVisitorFromStack/');
     request.setRequestHeader('Content', 'application/x-www-form-urlencoded');
     request.send(formData);
 });

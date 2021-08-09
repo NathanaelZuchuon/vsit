@@ -13,7 +13,7 @@ body {
     overflow: hidden !important;
     height: 100vh;
     width: 100vw;
-    background-image: url('http://127.0.0.1/bhent_prods/vsit/public/assets/icons/home.jpg');
+    background-image: url('https://vsit.bhent.org/public/assets/icons/home.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

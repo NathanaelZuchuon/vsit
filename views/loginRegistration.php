@@ -4,7 +4,7 @@
 <head>
     <?php include __DIR__ . '\..\views\head.php'; ?>
 	<title>Login Registration | VSIT</title>
-    <link rel="stylesheet" href="http://127.0.0.1/bhent_prods/vsit/public/assets/css/loginRegistration.css">
+    <link rel="stylesheet" href=<?=$host . "public/assets/css/loginRegistration.css"?>>
 </head>
 
 <body>
@@ -12,7 +12,7 @@
 
     <main id="wrapper">
         <section id="registration-icon">
-            <img src="http://127.0.0.1/bhent_prods/vsit/public/assets/icons/registration-icon.svg" alt="registration-icon">
+            <img src=<?=$host . "public/assets/icons/registration-icon.svg"?>>
         </section>
         <section id="registration-form">
             <h1>Registration</h1>
@@ -61,8 +61,8 @@
         </section>
     </main>
     
-    <script src="http://127.0.0.1/bhent_prods/vsit/public/assets/js/cursor.js"></script>
-    <script src="http://127.0.0.1/bhent_prods/vsit/public/assets/js/loginRegistration.js"></script>
+    <script src=<?=$host . "public/assets/js/cursor.js"?>></script>
+    <script src=<?=$host . "public/assets/js/loginRegistration.js"?>></script>
     <?php include __DIR__ . '\..\views\footer.php'; ?>
 </body>
 

@@ -24,7 +24,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-image: url('http://127.0.0.1/bhent_prods/vsit/public/assets/icons/dashboard.jpg');
+    background-image: url('https://vsit.bhent.org/public/assets/icons/dashboard.jpg');
     background-attachment: fixed;
     overflow: hidden !important;
     background-size: cover;

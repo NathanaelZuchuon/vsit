@@ -7,7 +7,7 @@ const form = {
 
 function handlerResponse(responseObj) {
     if (responseObj.ok) {
-        location.href = 'http://127.0.0.1/bhent_prods/vsit/dashboard';
+        location.href = 'https://vsit.bhent.org/dashboard/';
     } else {
         swal({
             title: "Connection",
@@ -38,7 +38,7 @@ form.form.addEventListener('submit', (event) => {
     formData.append("pseudo", form.pseudo.value);
     formData.append("password", form.password.value)
 
-    request.open('post', 'http://127.0.0.1/bhent_prods/vsit/login/checkLogin');
+    request.open('post', 'https://vsit.bhent.org/login/checkLogin/');
     request.setRequestHeader('Content', 'application/x-www-form-urlencoded');
     request.send(formData);
 });
