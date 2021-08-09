@@ -181,6 +181,7 @@ class dashboardController extends Controller {
 			}
 			
 			$output .= '</table>';
+			$reports->add(array('generated_at', 'access_path', 'start_at', 'end_at'), array($generated_at, 'download', $start, $end));
 			
 			header("Content-Type: application/vnd.ms-excel");
 			header("Content-Disposition: attachment; filename=$filename");

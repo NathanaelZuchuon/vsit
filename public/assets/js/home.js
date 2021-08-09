@@ -15,7 +15,7 @@ function animate () {
 
     titles_nodes[i].style.color = colors[i];
     setTimeout(() => {
-        titles_nodes[i].style.color = '#0000006D';
+        titles_nodes[i].style.color = 'rgba(206, 206, 206, 0.2)';
         i++;
     }, 1000);
 }

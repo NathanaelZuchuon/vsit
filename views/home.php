@@ -19,9 +19,9 @@
     </nav>
     
     <section id="titles">
-        <p>Big Business</p>
+        <p>Business</p>
         <p><span>Needs</span></p>
-        <p>Big Security</p>
+        <p>Security</p>
     </section>
     
     <script src="http://127.0.0.1/bhent_prods/vsit/public/assets/js/home.js"></script>
