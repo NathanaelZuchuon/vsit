@@ -24,18 +24,17 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-image: url('http://127.0.0.1/bhent_prods/vsit/public/assets/icons/icon.jpg');
-    background-position: center;
-    background-size: contain;
+    background-image: url('http://127.0.0.1/bhent_prods/vsit/public/assets/icons/dashboard.jpg');
     background-attachment: fixed;
     overflow: hidden !important;
-    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 main {
     width: 90%;
     height: 85%;
-    background-color: rgba(125, 125, 125, 0.8);
+    background-color: rgba(125, 125, 125, 0.45);
     border: none;
     border-radius: 20px;
     display: flex;

@@ -9,26 +9,11 @@ function handlerResponse(responseObj) {
     if (responseObj.ok) {
         location.href = 'http://127.0.0.1/bhent_prods/vsit/dashboard';
     } else {
-        while (form.errors_box.firstChild) {
-            form.errors_box.removeChild(form.errors_box.firstChild);
-        }
-        responseObj.messages.forEach((message) => {
-            let span_container = document.createElement('span');
-            span_container.classList.add('error');
-
-            let span_msg  = document.createElement('span');
-            span_msg.classList.add('error-msg');
-            span_msg.textContent = message;
-
-            let i = document.createElement('i');
-            i.classList.add('fa'); i.classList.add('fa-times-circle');
-
-            span_container.append(i); span_container.append(span_msg);
-            form.errors_box.append(span_container);
-            form.errors_box.style.animation = "show 2s";
-            setTimeout(() => {
-                form.errors_box.style.animation = "none";
-            }, 2000);
+        swal({
+            title: "Connection",
+            text: "Données invalides",
+            icon: "error",
+            button: "Ok",
         });
     }
 }

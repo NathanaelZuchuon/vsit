@@ -19,14 +19,12 @@ class loginController extends Controller {
 		$pass_hack = $this->passHacker($password);
 		
 		$ok = true;
-		$messages = array();
 		
 		$model = new loginModel();
 		$userInfos = $model->getUserInfo(array('pseudo', 'password'), array("pseudo = '$pseudo'", "password = '$pass_hack'"));
 		
 		if ( count($userInfos) == 0 ) {
 			$ok = false;
-			$messages[] = "Données invalides";
 		} else {
 			$infos = $model->getUserInfo(array("*"), array("pseudo = '$pseudo'"));
 			/* Set session's infos */
@@ -38,7 +36,7 @@ class loginController extends Controller {
 			/* ------------------- */
 		}
 		
-		return die(json_encode(array('ok' => $ok, 'messages' => $messages)));
+		return die(json_encode(array('ok' => $ok)));
 	}
 	
 	public function registration () {

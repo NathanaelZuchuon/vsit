@@ -9,9 +9,7 @@
 
 <body>
     <?php include __DIR__ . '\..\views\cursor.php'; ?>
-    
-    <div id="errors-box"></div>
-    
+
     <main id="wrapper">
         <div id="login-form">
             <div id="header">
