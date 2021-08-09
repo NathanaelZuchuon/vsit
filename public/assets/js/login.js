@@ -3,9 +3,14 @@ const form = {
     password: document.querySelector('#password'),
     errors_box: document.querySelector('#errors-box'),
     form: document.querySelector('#form'),
+    btn: document.querySelector('#btn'),
 };
 
 function handlerResponse(responseObj) {
+    form.btn.style.padding = "0 35%";
+    form.btn.innerHTML = "Allons-y <i class='fa fa-arrow-circle-right'></i>";
+    form.btn.disabled = false;
+
     if (responseObj.ok) {
         location.href = 'http://vsit.bhent.org/dashboard/';
     } else {
@@ -20,6 +25,12 @@ function handlerResponse(responseObj) {
 
 form.form.addEventListener('submit', (event) => {
     event.preventDefault();
+
+    form.btn.removeChild(form.btn.firstChild);
+    form.btn.style.padding = "0 25%";
+    form.btn.innerHTML = "Connection en cours...";
+    form.btn.disabled = true;
+
     const request = new XMLHttpRequest();
 
     request.onload = () => {

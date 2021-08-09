@@ -7,6 +7,7 @@ const form = {
     pseudo_error_box: document.querySelector('#pseudo-error-box'),
     password: document.querySelector('#password'),
     form: document.querySelector('#form'),
+    btn: document.querySelector('#btn'),
 };
 
 function removeNode (container) {
@@ -22,6 +23,9 @@ function setNone (elem, container) {
 }
 
 function handlerResponse(responseObj) {
+    form.btn.innerHTML = "S'enregistrer <i class='fa fa-check-circle'></i>";
+    form.btn.disabled = false;
+
     if (responseObj.ok) {
         swal({
             title: "Enregistrement",
@@ -56,30 +60,44 @@ function handlerResponse(responseObj) {
 
 form.form.addEventListener('submit', (event) => {
     event.preventDefault();
-    const request = new XMLHttpRequest();
 
-    request.onload = () => {
-        let responseObj = null;
-        try {
-            responseObj = JSON.parse(request.responseText);
-        } catch (e) {
-            console.error('Could not parse JSON !');
-        }
-        if (responseObj) {
-            handlerResponse(responseObj);
-        }
-    };
+    if ( parseInt(form.cni.value) < 0 || parseInt(form.cni.value) > 9999999999 ) {
+        swal({
+            title: "Enregistrement",
+            text: "N° de CNI invalide",
+            icon: "error",
+            button: "Ok",
+        });
+    } else {
+        form.btn.removeChild(form.btn.firstChild);
+        form.btn.innerHTML = "Enregistrement en cours...";
+        form.btn.disabled = true;
 
-    const formData = new FormData();
-    formData.append("firstname", form.firstname.value);
-    formData.append("lastname", form.lastname.value)
-    formData.append("cni", form.cni.value);
-    formData.append("pseudo", form.pseudo.value);
-    formData.append("password", form.password.value);
+        const request = new XMLHttpRequest();
 
-    request.open('post', 'http://vsit.bhent.org/login/checkLoginRegistration/');
-    request.setRequestHeader('Content', 'application/x-www-form-urlencoded');
-    request.send(formData);
+        request.onload = () => {
+            let responseObj = null;
+            try {
+                responseObj = JSON.parse(request.responseText);
+            } catch (e) {
+                console.error('Could not parse JSON !');
+            }
+            if (responseObj) {
+                handlerResponse(responseObj);
+            }
+        };
+
+        const formData = new FormData();
+        formData.append("firstname", form.firstname.value);
+        formData.append("lastname", form.lastname.value)
+        formData.append("cni", form.cni.value);
+        formData.append("pseudo", form.pseudo.value);
+        formData.append("password", form.password.value);
+
+        request.open('post', 'http://vsit.bhent.org/login/checkLoginRegistration/');
+        request.setRequestHeader('Content', 'application/x-www-form-urlencoded');
+        request.send(formData);
+    }
 });
 
 let eye_icon = document.querySelector("#eye-icon");

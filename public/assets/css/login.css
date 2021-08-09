@@ -92,6 +92,7 @@ body {
     align-items: center;
     justify-content: space-between;
     padding: 0 35%;
+    text-align: center;
 }
 
 #wrapper #login-form #form-container form .fields #btn .fa {
