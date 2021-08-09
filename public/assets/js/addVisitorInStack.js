@@ -6,9 +6,13 @@ const form = {
     phone: document.querySelector("#phone"),
     observation: document.querySelector("#observation"),
     form: document.querySelector("#form"),
+    btn: document.querySelector("#btn"),
 }
 
 function handlerResponse(responseObj) {
+    form.btn.innerHTML = "Ajouter<i class='fa fa-plus'></i>";
+    form.btn.disabled = false;
+
     if (responseObj.ok) {
         swal({
             title: "Enregistrement",
@@ -29,7 +33,7 @@ function handlerResponse(responseObj) {
 form.form.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    if ( parseInt(form.cni.value) < 0 ) {
+    if ( parseInt(form.cni.value) < 0 || parseInt(form.cni.value) > 9999999999 ) {
         swal({
             title: "Enregistrement",
             text: "N° de CNI invalide",
@@ -44,6 +48,10 @@ form.form.addEventListener('submit', (event) => {
             button: "Ok",
         });
     } else {
+        form.btn.removeChild(form.btn.firstChild);
+        form.btn.innerHTML = "Ajout en cours...";
+        form.btn.disabled = true;
+
         const request = new XMLHttpRequest();
 
         request.onload = () => {

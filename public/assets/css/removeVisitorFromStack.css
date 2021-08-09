@@ -33,6 +33,7 @@
 #content #form #btn {
     height: 45px;
     color: white;
+    text-align: center;
     transition: background-color .5s;
     background-color: rgba(30, 145, 255, 0.7);
 }

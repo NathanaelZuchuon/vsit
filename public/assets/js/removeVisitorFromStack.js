@@ -1,9 +1,13 @@
 const form = {
     cni: document.querySelector("#cni"),
     form: document.querySelector("#form"),
+    btn: document.querySelector("#btn"),
 };
 
 function handlerResponse(responseObj) {
+    form.btn.innerHTML = "Retirer<i class='fa fa-minus'></i>";
+    form.btn.disabled = false;
+
     if (responseObj.ok) {
         swal({
             title: "Enregistrement",
@@ -23,6 +27,11 @@ function handlerResponse(responseObj) {
 
 form.form.addEventListener('submit', (event) => {
     event.preventDefault();
+
+    form.btn.removeChild(form.btn.firstChild);
+    form.btn.innerHTML = "Action en cours...";
+    form.btn.disabled = true;
+
     const request = new XMLHttpRequest();
 
     request.onload = () => {
