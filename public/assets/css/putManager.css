@@ -1,0 +1,43 @@
+#content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#content #form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 300px;
+}
+
+#content #form * {
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+#content #form input {
+    height: 40px;
+    padding: 10px 15px;
+}
+
+#content #form #btn .fa {
+    width: fit-content;
+    height: fit-content;
+}
+
+#content #form #btn {
+    height: 45px;
+    color: white;
+    text-align: center;
+    transition: background-color .5s;
+    background-color: rgba(30, 145, 255, 0.7);
+}
+
+#content #form #btn:hover {
+    background-color: dodgerblue;
+}

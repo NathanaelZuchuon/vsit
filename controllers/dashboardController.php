@@ -50,6 +50,29 @@ class dashboardController extends Controller {
 		}
 	}
 	
+	public function putManagerView () {
+		if ( $this->checkAccess() ) {
+			include __DIR__ . '/../views/putManager.php';
+		}
+	}
+	
+	public function putManager () {
+		if ( $this->checkAccess() ) {
+			global $users;
+			
+			$pseudo = $_POST['pseudo'];
+			$ok = true;
+			
+			if ( $users->existenceCheck(array('pseudo'), array("pseudo = '$pseudo'")) ) {
+				$users->updateInfos(array('role'), array('manager'), array("pseudo = '$pseudo'"));
+			} else {
+				$ok = false;
+			}
+			
+			return die(json_encode(array('ok' => $ok)));
+		}
+	}
+	
 	public function addVisitorInStack () {
 		if ( $this->checkAccess() ) {
 			

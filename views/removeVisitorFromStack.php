@@ -53,6 +53,13 @@ function userInfos () : string {
                             </div>
                             <span id="generate-report"><a href=<?="http://vsit.bhent.org/" . "dashboard/makeReportView"?>>Générer le rapport</a></span>
                         </div>
+
+                        <div class="operations-box">
+                            <div class="operations-box-icon">
+                                <i class="fa fa-user-shield"></i>
+                            </div>
+                            <span id="put-manager"><a href=<?="http://vsit.bhent.org/" . "dashboard/putManagerView"?>>Mettre manager</a></span>
+                        </div>
                     <?php } ?>
     
                 </div>
