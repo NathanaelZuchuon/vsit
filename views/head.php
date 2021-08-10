@@ -10,7 +10,7 @@
     <meta property="og:image" content=<?="http://vsit.bhent.org/" . "public/assets/icons/fav-icon.svg"?>>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href=<?="http://vsit.bhent.org/" . "public/assets/icons/fav-icon.svg"?>>
-    <script src=<?="http://vsit.bhent.org/" . "public/assets/js/sweetalert.min.js"?>></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <link rel="stylesheet" href=<?="http://vsit.bhent.org/" . "public/assets/css/cursor.css"?>>
-    <link rel="stylesheet" href=<?="http://vsit.bhent.org/" . "public/assets/css/font-awesome-web/css/all.min.css"?>>
-    <link rel="stylesheet" href=<?="http://vsit.bhent.org/" . "public/assets/css/font-awesome-web/css/fontawesome.min.css"?>>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css">
