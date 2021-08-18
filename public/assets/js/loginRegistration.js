@@ -33,7 +33,7 @@ function handlerResponse(responseObj) {
             icon: "success",
         });
         setTimeout(() => {
-            location.href = 'http://vsit.bhent.org/login/';
+            location.href = 'http://vsit.bhent.org/vsit/login/';
         }, 1000);
     } else {
         removeNode('cni_error_box');
@@ -94,7 +94,7 @@ form.form.addEventListener('submit', (event) => {
         formData.append("pseudo", form.pseudo.value);
         formData.append("password", form.password.value);
 
-        request.open('post', 'http://vsit.bhent.org/login/checkLoginRegistration/');
+        request.open('post', 'http://vsit.bhent.org/vsit/login/checkLoginRegistration/');
         request.setRequestHeader('Content', 'application/x-www-form-urlencoded');
         request.send(formData);
     }

@@ -5,7 +5,7 @@
 #cursor-box {
     width: 12px;
     height: 12px;
-    background-color: rgba(0, 0, 255, 0.45);
+    background-color: rgba(30, 145, 255, 0.80);
     border-radius: 50%;
     position: absolute;
     display: none;

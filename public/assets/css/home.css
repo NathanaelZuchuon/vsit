@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
 * {
     padding: 0;
@@ -21,10 +21,10 @@ body {
 }
 
 #nav-bar {
-    font-family: "Inter", "Segoe UI", sans-serif;
-    width: 1048px;
+    font-family: "Roboto", "Segoe UI", sans-serif;
+    width: 100%;
     height: fit-content;
-    margin: 50px auto 40px auto;
+    padding: 10px 80px;
     display: flex;
     font-size: 14px;
     align-items: center;
@@ -62,15 +62,19 @@ body {
 
 #titles {
     width: 100%;
-    height: fit-content;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
 }
 
 #titles p {
     text-align: center;
     font-size: 120px;
     letter-spacing: -5px;
-    font-family: "Open Sans", "Segoe UI", sans-serif;
-    font-weight: 600;
+    font-family: "Roboto", "Segoe UI", sans-serif;
+    font-weight: 700;
     color: rgba(206, 206, 206, 0.2);
     transition: color 1s;
 }

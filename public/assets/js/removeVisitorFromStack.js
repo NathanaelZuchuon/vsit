@@ -49,7 +49,7 @@ form.form.addEventListener('submit', (event) => {
     const formData = new FormData();
     formData.append("cni", form.cni.value);
 
-    request.open('post', 'http://vsit.bhent.org/dashboard/removeVisitorFromStack/');
+    request.open('post', 'http://vsit.bhent.org/vsit/dashboard/removeVisitorFromStack/');
     request.setRequestHeader('Content', 'application/x-www-form-urlencoded');
     request.send(formData);
 });

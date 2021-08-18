@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-$host = "http://vsit.bhent.org/";
+$host = "http://vsit.bhent.org/vsit/";
 
 require_once __DIR__ . '/core/Model.php';
 require_once __DIR__ . '/core/Router.php';
@@ -17,6 +17,6 @@ $router = new Router();
 
 $router->add('/home', 'homeController');
 $router->add('/login', 'loginController');
-$router->add('/dashboard', 'dashboardController');
+$router->add('/dashboard', 'homeController');
 
 $router->submit();

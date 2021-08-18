@@ -6,15 +6,15 @@ span.addEventListener('click', () => {
     request.onload = () => {
         swal({
             title: "Déconnexion",
-            text: "Déconnecter avec succès",
+            text: "Déconnecté avec succès",
             icon: "success",
         });
         setTimeout(() => {
             location.href = 'http://vsit.bhent.org/home/';
-        }, 1500);
+        }, 1000);
     };
 
-    request.open('post', 'http://vsit.bhent.org/dashboard/logout/');
+    request.open('post', 'http://vsit.bhent.org/vsit/dashboard/logout/');
     request.setRequestHeader('Content', 'application/x-www-form-urlencoded');
     request.send();
 });

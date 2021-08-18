@@ -18,7 +18,7 @@ function handlerResponse(responseObj) {
     } else {
         swal({
             title: "Enregistrement",
-            text: "Pseudo incorrect",
+            text: "Pseudo inexistant",
             icon: "error",
             button: "Ok",
         });
@@ -49,7 +49,7 @@ form.form.addEventListener('submit', (event) => {
     const formData = new FormData();
     formData.append("pseudo", form.pseudo.value);
 
-    request.open('post', 'http://vsit.bhent.org/dashboard/putManager/');
+    request.open('post', 'http://vsit.bhent.org/vsit/dashboard/putManager/');
     request.setRequestHeader('Content', 'application/x-www-form-urlencoded');
     request.send(formData);
 });

@@ -12,7 +12,7 @@ function handlerResponse(responseObj) {
     form.btn.disabled = false;
 
     if (responseObj.ok) {
-        location.href = 'http://vsit.bhent.org/dashboard/';
+        location.href = 'http://vsit.bhent.org/vsit/dashboard/';
     } else {
         swal({
             title: "Connection",
@@ -49,7 +49,7 @@ form.form.addEventListener('submit', (event) => {
     formData.append("pseudo", form.pseudo.value);
     formData.append("password", form.password.value)
 
-    request.open('post', 'http://vsit.bhent.org/login/checkLogin/');
+    request.open('post', 'http://vsit.bhent.org/vsit/login/checkLogin/');
     request.setRequestHeader('Content', 'application/x-www-form-urlencoded');
     request.send(formData);
 });
