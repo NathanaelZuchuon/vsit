@@ -33,7 +33,7 @@ function handlerResponse(responseObj) {
             icon: "success",
         });
         setTimeout(() => {
-            location.href = 'http://vsit.bhent.org/vsit/login/';
+            location.href = 'http://127.0.0.1/bhent_prods/vsit/login/';
         }, 1000);
     } else {
         removeNode('cni_error_box');
@@ -61,7 +61,7 @@ function handlerResponse(responseObj) {
 form.form.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    if ( parseInt(form.cni.value) < 0 || parseInt(form.cni.value) > 9999999999 ) {
+    if ( !( /^\d{10}$/.test(form.cni.value) ) ) {
         swal({
             title: "Enregistrement",
             text: "N° de CNI invalide",
@@ -94,7 +94,7 @@ form.form.addEventListener('submit', (event) => {
         formData.append("pseudo", form.pseudo.value);
         formData.append("password", form.password.value);
 
-        request.open('post', 'http://vsit.bhent.org/vsit/login/checkLoginRegistration/');
+        request.open('post', 'http://127.0.0.1/bhent_prods/vsit/login/checkLoginRegistration/');
         request.setRequestHeader('Content', 'application/x-www-form-urlencoded');
         request.send(formData);
     }

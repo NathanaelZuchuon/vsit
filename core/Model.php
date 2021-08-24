@@ -1,12 +1,17 @@
 <?php
 
+namespace vsit\core;
+
+use PDO;
+use Exception;
+
 include_once __DIR__ . '/config.php';
 
 class Model {
 	
-	protected $db;
+	protected PDO $db;
 	protected string $table;
-	private static $_db_instance;
+	private static ?PDO $_db_instance = null;
 	
 	public function __construct () {
 		$this->db = $this->getInstance();

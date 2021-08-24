@@ -1,5 +1,9 @@
 <?php
 
+namespace vsit\models;
+
+use vsit\core\{Model};
+
 class dashboardUsersModel extends Model {
 	public string $table = 'users';
 	

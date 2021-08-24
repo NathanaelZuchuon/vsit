@@ -152,6 +152,6 @@ request.onload = () => {
     }
 };
 
-request.open('post', 'http://vsit.bhent.org/vsit/dashboard/showVisitors/');
+request.open('post', 'http://127.0.0.1/bhent_prods/vsit/dashboard/showVisitors/');
 request.setRequestHeader('Content', 'application/x-www-form-urlencoded');
 request.send();

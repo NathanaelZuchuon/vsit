@@ -1,5 +1,7 @@
 <?php
 
+namespace vsit\core;
+
 class errorHandler {
 	public function __construct ($error=null) {
 		switch ( $error ) {

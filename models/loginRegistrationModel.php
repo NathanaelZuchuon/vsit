@@ -1,5 +1,9 @@
 <?php
 
+namespace vsit\models;
+
+use vsit\core\{Model};
+
 class loginRegistrationModel extends Model {
 	public string $table = 'users';
 	

@@ -5,7 +5,7 @@
 	<title>404 Not Found</title>
 	<link rel='preconnect' href='https://fonts.googleapis.com'>
 	<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
-    <link rel="icon" href=<?="http://vsit.bhent.org/vsit/" . "public/assets/icons/fav-icon.svg"?>>
+    <link rel="icon" href=<?="http://127.0.0.1/bhent_prods/vsit/" . "public/assets/icons/fav-icon.svg"?>>
 	<link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Lexend:wght@300&display=swap'>
 	<style>
 		body {

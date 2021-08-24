@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
     --fa-color: rgba(0, 0, 0, 0.5);
@@ -10,7 +9,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Nunito", sans-serif;
 }
 
 .active {
@@ -24,7 +23,7 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-image: url('http://vsit.bhent.org/public/assets/icons/dashboard.jpg');
+    background-image: url('http://127.0.0.1/bhent_prods/vsit/public/assets/icons/dashboard.jpg');
     background-attachment: fixed;
     overflow: hidden !important;
     background-size: cover;
@@ -79,12 +78,6 @@ main #content {
 }
 
 /* ------ */
-main aside #wrapper #operations .operations-box .operations-box-icon .fa {
-    background-color: unset !important;
-}
-/* ------ */
-
-/* ------ */
 main aside #wrapper #infos, main aside #wrapper #operations {
     width: 100%;
 }
@@ -121,10 +114,9 @@ main aside #wrapper #infos .infos-box .infos-box-icon, main aside #wrapper #oper
     justify-content: center;
 }
 
-main aside #wrapper #infos .infos-box .infos-box-icon .fa, main aside #wrapper #operations .operations-box .operations-box-icon .fa {
+main aside #wrapper #operations .operations-box .operations-box-icon .fa, main aside #wrapper #infos .infos-box .infos-box-icon .fa {
     width: 30px;
     height: 30px;
-    background-color: #cecece;
     color: var(--fa-color);
     border-radius: 50%;
     border: none;
@@ -132,9 +124,15 @@ main aside #wrapper #infos .infos-box .infos-box-icon .fa, main aside #wrapper #
     align-items: center;
     justify-content: center;
 }
+
+main aside #wrapper #infos .infos-box .infos-box-icon img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+}
 /* ------ */
 
 footer {
     color: white;
-    font-weight: lighter !important;
 }

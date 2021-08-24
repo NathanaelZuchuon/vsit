@@ -1,15 +1,30 @@
 <?php
 
+namespace vsit\core;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use Exception;
+use vsit\controllers\{dashboardController, homeController, loginController};
+
 class Router {
 	
-	private $_uri = array();
-	private $_controllers = array();
+	private array $_uri = array();
+	private array $_controllers = array();
 	
-	public function add($uri, $controller=null) {
+	public function add ($uri, $controller) : void {
 		$this->_uri[] = $uri;
-		
-		if ( !is_null($controller) ) {
-			$this->_controllers[] = $controller;
+		$this->_controllers[] = $controller;
+	}
+	
+	private function getClass ($controller) {
+		switch ($controller) {
+			case 'homeController':
+				return homeController::class;
+			case 'dashboardController':
+				return dashboardController::class;
+			case 'loginController':
+				return loginController::class;
 		}
 	}
 	
@@ -23,7 +38,8 @@ class Router {
 			if ( in_array($uriParam, $this->_uri) ) {
 				foreach ($this->_uri as $key => $value) {
 					if ( preg_match("#^$value$#", $uriParam) ) {
-						$controller = $this->_controllers[$key];
+						$controller = '\\' . $this->getClass($this->_controllers[$key]);
+						
 						if ( !is_null($controllerFunc) && !empty(trim($controllerFunc)) && method_exists($controller, $controllerFunc) && in_array($controllerFunc, get_class_methods($controller)) ) {
 							(new $controller())->{$controllerFunc}();
 						} elseif ( $controllerFunc == '' ) {

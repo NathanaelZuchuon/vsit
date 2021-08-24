@@ -13,8 +13,8 @@ function userInfos () : string {
 <head>
 	<?php include __DIR__ . '/../views/head.php'; ?>
     <title>Dashboard | VSIT</title>
-    <link rel="stylesheet" href=<?="http://vsit.bhent.org/vsit/" . "public/assets/css/dashboard.css"?>>
-    <link rel="stylesheet" href=<?="http://vsit.bhent.org/vsit/" . "public/assets/css/addVisitorInStack.css"?>>
+    <link rel="stylesheet" href=<?=$host . "public/assets/css/dashboard.css"?>>
+    <link rel="stylesheet" href=<?=$host . "public/assets/css/addVisitorInStack.css"?>>
 </head>
 
 <body>
@@ -22,7 +22,7 @@ function userInfos () : string {
     
     <main>
         <aside>
-            <img src=<?="http://vsit.bhent.org/vsit/" . "public/assets/icons/vsit-logo.svg"?>>
+            <img src=<?=$host . "public/assets/icons/vsit-logo.svg"?>>
             
             <div id="wrapper">
                 
@@ -37,13 +37,13 @@ function userInfos () : string {
                         <div class="operations-box-icon">
                             <i class="fa fa-minus"></i>
                         </div>
-                        <span id="removeVisitor"><a href=<?="http://vsit.bhent.org/vsit/" . "dashboard/removeVisitorFromStackView"?>>Le retirer de la file</a></span>
+                        <span id="removeVisitor"><a href=<?=$host . "dashboard/removeVisitorFromStackView"?>>Le retirer de la file</a></span>
                     </div>
                     <div class="operations-box">
                         <div class="operations-box-icon">
                             <i class="fa fa-calendar-day"></i>
                         </div>
-                        <span id="showVisitors"><a href=<?="http://vsit.bhent.org/vsit/" . "dashboard/showVisitorsView"?>>Voir les visites du jour</a></span>
+                        <span id="showVisitors"><a href=<?=$host . "dashboard/showVisitorsView"?>>Voir les visites du jour</a></span>
                     </div>
                     <?php if ( $_SESSION['role'] == 'manager' ) { ?>
                     
@@ -51,14 +51,14 @@ function userInfos () : string {
                             <div class="operations-box-icon">
                                 <i class="fa fa-file-excel"></i>
                             </div>
-                            <span id="generate-report"><a href=<?="http://vsit.bhent.org/vsit/" . "dashboard/makeReportView"?>>Générer le rapport</a></span>
+                            <span id="generate-report"><a href=<?=$host . "dashboard/makeReportView"?>>Générer le rapport</a></span>
                         </div>
 
                         <div class="operations-box">
                             <div class="operations-box-icon">
                                 <i class="fa fa-user-shield"></i>
                             </div>
-                            <span id="put-manager"><a href=<?="http://vsit.bhent.org/vsit/" . "dashboard/putManagerView"?>>Mettre manager</a></span>
+                            <span id="put-manager"><a href=<?=$host . "dashboard/putManagerView"?>>Mettre manager</a></span>
                         </div>
                     <?php } ?>
                     
@@ -67,7 +67,7 @@ function userInfos () : string {
                 <div id="infos">
                     <div class="infos-box">
                         <div class="infos-box-icon">
-                            <i class="fa fa-user"></i>
+                            <img src=<?=$host . "public/assets/icons/dashboard-icon.jpg"?>>
                         </div>
                         <span id="user-info"><?php echo userInfos(); ?></span>
                     </div>
@@ -99,9 +99,9 @@ function userInfos () : string {
         
     </main>
 
-    <script src=<?="http://vsit.bhent.org/vsit/" . "public/assets/js/addVisitorInStack.js"?>></script>
-    <script src=<?="http://vsit.bhent.org/vsit/" . "public/assets/js/dashboard.js"?>></script>
-    <script src=<?="http://vsit.bhent.org/vsit/" . "public/assets/js/cursor.js"?>></script>
+    <script src=<?=$host . "public/assets/js/addVisitorInStack.js"?>></script>
+    <script src=<?=$host . "public/assets/js/dashboard.js"?>></script>
+    <script src=<?=$host . "public/assets/js/cursor.js"?>></script>
     <?php include __DIR__ . '/../views/footer.php'; ?>
 </body>
 

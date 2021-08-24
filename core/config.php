@@ -1,6 +1,6 @@
 <?php
 
-$db_name = 'u735428606_vsit';
-$db_user = 'u735428606_nathanael';
-$db_password = 'Zuchuon200';
+$db_name = 'vsit';
+$db_user = 'root';
+$db_password = '';
 $host = 'localhost';

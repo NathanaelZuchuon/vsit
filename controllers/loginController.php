@@ -1,5 +1,11 @@
 <?php
 
+namespace vsit\controllers;
+
+use vsit\core\{Controller};
+use vsit\helpers\{passwordEncryption};
+use vsit\models\{loginModel, loginRegistrationModel};
+
 class loginController extends Controller {
 	
 	public function def () {
@@ -7,7 +13,7 @@ class loginController extends Controller {
 	}
 	
 	private function passHacker ($password, $action='encrypt') : string {
-		return encrypt_decrypt($password, $action);
+		return (new passwordEncryption())->{'encrypt_decrypt'}($password, $action);
 	}
 	
 	public function checkLogin () {

@@ -1,2 +1,3 @@
-<div id="cursor-box-container"></div>
-    <div id="cursor-box"></div>
+<div id="cursor-box-parent">
+        <div id="cursor-box"></div>
+    </div>

@@ -1,22 +1,31 @@
-/* Cursor's Animation */
-let cursor_box = document.querySelector("#cursor-box");
-let cursor_box_container = document.querySelector("#cursor-box-container");
+window.onload = () => {
+    /* Cursor's Animation */
+    let cursor_box = document.querySelector("#cursor-box");
 
-addEventListener('mousemove', tellPos);
+    const moveHandler = (event) => {
+        let rem = cursor_box.offsetWidth / 2;
+        let x = event.pageX - rem;
+        let y = event.pageY - rem;
 
-function tellPos (e) {
+        cursor_box.style.transform = "translate(" + x + "px, "  + y + "px)";
+    };
 
-    document.body.style.overflowY = ( e.pageX >= screen.availWidth - 15 && e.pageX <= screen.availWidth ) ? "scroll" : "hidden";
+    const setMousemoveHandler = (func) => {
+        window.onmousemove = func;
+    }
 
-    cursor_box.style.left = e.pageX + "px";
-    cursor_box.style.top = e.pageY + "px";
+    setMousemoveHandler(moveHandler);
 
-    let rem = ( cursor_box_container.clientWidth - cursor_box.clientWidth ) / 2;
+    window.onmousedown = (event) => {
+        if ( event.button === 0 ) {
+            setMousemoveHandler(null);
+            cursor_box.classList.add('animated');
 
-    cursor_box_container.style.left = ( e.pageX - rem ) + "px";
-    cursor_box_container.style.top = ( e.pageY - rem ) + "px";
-
-    cursor_box.style.display = "block";
-    cursor_box_container.style.display = "block";
+            setTimeout(() => {
+                cursor_box.classList.remove('animated');
+                setMousemoveHandler(moveHandler);
+            }, 500);
+        }
+    };
+    /* ------------------- */
 }
-/* ------------------- */

@@ -1,9 +1,11 @@
 <?php
 
-include_once __DIR__ . '/../models/dashboardUsersModel.php';
-include_once __DIR__ . '/../models/dashboardPersonsModel.php';
-include_once __DIR__ . '/../models/dashboardReportsModel.php';
-include_once __DIR__ . '/../models/dashboardVisitorsModel.php';
+namespace vsit\controllers;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use vsit\core\{Controller};
+use vsit\models\{dashboardUsersModel, dashboardPersonsModel, dashboardReportsModel, dashboardVisitorsModel};
 
 $users = new dashboardUsersModel();
 $persons = new dashboardPersonsModel();
@@ -14,7 +16,7 @@ class dashboardController extends Controller {
 	
 	private function checkAccess () : bool {
 		if ( count($_SESSION) == 0 ) {
-			header("Location: http://vsit.bhent.org/vsit/home");
+			header("Location: http://127.0.0.1/bhent_prods/vsit/home/");
 			return false;
 		}
 		return true;
