@@ -31,7 +31,6 @@
                     <div class="fields">
                         <div id="cni-block">
                             <label for="cni">N° de la CNI</label>
-                            <div id="cni-error-box"></div>
                         </div>
                         <input type="number" id="cni" name="cni" required="required">
                     </div>
@@ -40,7 +39,6 @@
                     <div class="fields">
                         <div id="pseudo-block">
                             <label for="pseudo">Pseudo</label>
-                            <div id="pseudo-error-box"></div>
                         </div>
                         <input type="text" id="pseudo" name="pseudo" required="required">
                     </div>
@@ -60,8 +58,7 @@
             </form>
         </section>
     </main>
-    
-    <script src=<?=$host . "public/assets/js/cursor.js"?>></script>
+
     <script src=<?=$host . "public/assets/js/loginRegistration.js"?>></script>
     <?php include __DIR__ . '/../views/footer.php'; ?>
 </body>

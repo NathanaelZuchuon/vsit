@@ -67,7 +67,7 @@ function userInfos () : string {
 				<div id="infos">
 					<div class="infos-box">
 						<div class="infos-box-icon">
-							<i class="fa fa-user"></i>
+                            <img src=<?=$host . "public/assets/icons/dashboard-icon.jpg"?>>
 						</div>
 						<span id="user-info"><?php echo userInfos(); ?></span>
 					</div>
@@ -93,7 +93,6 @@ function userInfos () : string {
 	
 	<script src=<?=$host . "public/assets/js/putManager.js"?>></script>
 	<script src=<?=$host . "public/assets/js/dashboard.js"?>></script>
-	<script src=<?=$host . "public/assets/js/cursor.js"?>></script>
 	<?php include __DIR__ . '/../views/footer.php'; ?>
 </body>
 

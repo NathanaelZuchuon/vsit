@@ -7,11 +7,6 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use vsit\core\{Controller};
 use vsit\models\{dashboardUsersModel, dashboardPersonsModel, dashboardReportsModel, dashboardVisitorsModel};
 
-$users = new dashboardUsersModel();
-$persons = new dashboardPersonsModel();
-$reports = new dashboardReportsModel();
-$visitors = new dashboardVisitorsModel();
-
 class dashboardController extends Controller {
 	
 	private function checkAccess () : bool {
@@ -60,7 +55,7 @@ class dashboardController extends Controller {
 	
 	public function putManager () {
 		if ( $this->checkAccess() ) {
-			global $users;
+			$users = new dashboardUsersModel();
 			
 			$pseudo = $_POST['pseudo'];
 			$ok = true;
@@ -78,9 +73,9 @@ class dashboardController extends Controller {
 	public function addVisitorInStack () {
 		if ( $this->checkAccess() ) {
 			
-			global $users;
-			global $persons;
-			global $visitors;
+			$users = new dashboardUsersModel();
+			$persons = new dashboardPersonsModel();
+			$visitors = new dashboardVisitorsModel();
 			
 			$firstname = $_POST['firstname'];
 			$lastname = $_POST['lastname'];
@@ -111,8 +106,8 @@ class dashboardController extends Controller {
 	
 	public function removeVisitorFromStack () {
 		if ( $this->checkAccess() ) {
-			global $persons;
-			global $visitors;
+			$persons = new dashboardPersonsModel();
+			$visitors = new dashboardVisitorsModel();
 			
 			$cni = $_POST['cni'];
 			$ok = true;
@@ -132,8 +127,8 @@ class dashboardController extends Controller {
 	
 	public function showVisitors () {
 		if ( $this->checkAccess() ) {
-			global $persons;
-			global $visitors;
+			$persons = new dashboardPersonsModel();
+			$visitors = new dashboardVisitorsModel();
 			
 			$curr_date = date('Y-m-d');
 			
@@ -157,9 +152,9 @@ class dashboardController extends Controller {
 	
 	public function makeReport () {
 		if ( $this->checkAccess() ) {
-			global $persons;
-			global $reports;
-			global $visitors;
+			$persons = new dashboardPersonsModel();
+			$visitors = new dashboardVisitorsModel();
+			$reports = new dashboardReportsModel();
 			
 			$start = str_replace('T', ' ', $_POST['start_at']);
 			$end = str_replace('T', ' ', $_POST['end_at']);

@@ -2,8 +2,6 @@
 
 namespace vsit\core;
 
-require_once __DIR__ . '/../vendor/autoload.php';
-
 use Exception;
 use vsit\controllers\{dashboardController, homeController, loginController};
 

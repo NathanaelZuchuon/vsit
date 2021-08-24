@@ -20,12 +20,11 @@
     
     <section id="titles">
         <p>Business</p>
-        <p><span>Needs</span></p>
+        <p>Needs</p>
         <p>Security</p>
     </section>
     
     <script src=<?=$host . "public/assets/js/home.js"?>></script>
-    <script src=<?=$host . "public/assets/js/cursor.js"?>></script>
     <?php include __DIR__ . '/../views/footer.php'; ?>
 </body>
 

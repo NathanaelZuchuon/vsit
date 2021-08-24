@@ -10,23 +10,11 @@ const form = {
     btn: document.querySelector('#btn'),
 };
 
-function removeNode (container) {
-    while (form[container].firstChild) {
-        form[container].removeChild(form[container].firstChild);
-    }
-}
-
-function setNone (elem, container) {
-    form[elem].style.border = "none";
-    form[elem].style.boxShadow = "none";
-    removeNode(container);
-}
-
 function handlerResponse(responseObj) {
     form.btn.innerHTML = "S'enregistrer <i class='fa fa-check-circle'></i>";
     form.btn.disabled = false;
 
-    if (responseObj.ok) {
+    if ( responseObj.num === 0 ) {
         swal({
             title: "Enregistrement",
             text: "Opération réussie",
@@ -36,25 +24,24 @@ function handlerResponse(responseObj) {
             location.href = 'http://127.0.0.1/bhent_prods/vsit/login/';
         }, 1000);
     } else {
-        removeNode('cni_error_box');
-        removeNode('pseudo_error_box');
-
-        responseObj.cni_errors.forEach((message) => {
-            form.cni_error_box.textContent = message;
-            form.cni.style.border = "1px solid #ff253a";
-            form.cni.style.boxShadow = "0 0 2px #ff253a";
-
-        });
-        responseObj.pseudo_errors.forEach((message) => {
-            form.pseudo_error_box.textContent = message;
-            form.pseudo.style.border = "1px solid #ff253a";
-            form.pseudo.style.boxShadow = "0 0 2px #ff253a";
-        });
-
-        setTimeout(() => {
-            setNone('cni', 'cni_error_box');
-            setNone('pseudo', 'pseudo_error_box');
-        }, 1000);
+        switch ( responseObj.num ) {
+            case 1:
+                swal({
+                    title: "Enregistrement",
+                    text: `${responseObj.msg[0]}`,
+                    icon: "error",
+                    button: "Ok",
+                });
+                break;
+            case 2:
+                swal({
+                    title: "Enregistrement",
+                    text: "N° de CNI et pseudo existants",
+                    icon: "error",
+                    button: "Ok",
+                });
+                break;
+        }
     }
 }
 

@@ -10,8 +10,12 @@
     <meta property="og:description" content="Join the most ergonomic visit management platform">
     <meta property="og:image" content=<?=$host . "public/assets/icons/fav-icon.svg"?>>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src=<?=$host . "public/assets/js/cursor.js"?>></script>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js></script>
+
     <link rel="icon" href=<?=$host . "public/assets/icons/fav-icon.svg"?>>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <link rel="stylesheet" href=<?=$host . "public/assets/css/cursor.css"?>>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css">
+    <link rel="stylesheet" href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css>
+    <link rel="stylesheet" href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css>
+

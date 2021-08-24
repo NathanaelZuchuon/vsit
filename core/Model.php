@@ -5,8 +5,6 @@ namespace vsit\core;
 use PDO;
 use Exception;
 
-include_once __DIR__ . '/config.php';
-
 class Model {
 	
 	protected PDO $db;
@@ -18,16 +16,16 @@ class Model {
 	}
 	
 	private function getInstance () : PDO {
-		global $host;
-		global $db_name;
-		global $db_user;
-		global $db_password;
+		$db_host = Config::$db_host;
+		$db_name = Config::$db_name;
+		$db_user = Config::$db_user;
+		$db_password = Config::$db_password;
 		
 		if (is_null(self::$_db_instance)) {
 			try {
-				self::$_db_instance = new PDO( "mysql:host=$host;dbname=$db_name", $db_user, $db_password);
+				self::$_db_instance = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_password);
 			} catch (Exception $e) {
-				die('Erreur : ' . $e->getMessage());
+				die('Error : ' . $e->getMessage());
 			}
 		}
 		

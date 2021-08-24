@@ -101,7 +101,6 @@ function userInfos () : string {
 
     <script src=<?=$host . "public/assets/js/addVisitorInStack.js"?>></script>
     <script src=<?=$host . "public/assets/js/dashboard.js"?>></script>
-    <script src=<?=$host . "public/assets/js/cursor.js"?>></script>
     <?php include __DIR__ . '/../views/footer.php'; ?>
 </body>
 

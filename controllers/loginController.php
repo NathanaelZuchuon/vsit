@@ -61,31 +61,30 @@ class loginController extends Controller {
 		$password = $_POST['password'];
 		$pass_hack = $this->passHacker($password);
 
-		$ok = true;
-		$cni_errors = array();
-		$pseudo_errors = array();
+		$num = 0;
+		$msg = array();
 
 		$model = new loginRegistrationModel();
 		$usersCNI = $model->getUserInfo(array('cni'), array("cni = '$cni'"));
 		$usersPseudos = $model->getUserInfo(array('pseudo'), array("pseudo = '$pseudo'"));
 
 		if ( count($usersCNI) != 0 ) {
-			$ok = false;
-			$cni_errors[] = "Déjà existant";
+			$num++;
+			$msg[] = 'N° de CNI existant';
 		}
 		
 		if ( count($usersPseudos) != 0 ) {
-			$ok = false;
-			$pseudo_errors[] = "Déjà existant";
+			$num++;
+			$msg[] = 'Pseudo existant';
 		}
 		
-		if ($ok) {
+		if ( $num == 0 ) {
 			$model->setUserInfo(array('firstname', 'lastname', 'cni', 'pseudo', 'password', 'role', 'timestamp'),
 				array($firstname, $lastname, $cni, $pseudo, $pass_hack, $role, date("Y-m-d H:i:s")),
 			);
 		}
 		
-		return die(json_encode(array('ok' => $ok, 'cni_errors' => $cni_errors, 'pseudo_errors' => $pseudo_errors)));
+		return die(json_encode(array('num' => $num, 'msg' => $msg)));
 		
 	}
 }

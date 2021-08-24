@@ -44,7 +44,6 @@
         </div>
     </main>
 
-    <script src=<?=$host . "public/assets/js/cursor.js"?>></script>
     <script src=<?=$host . "public/assets/js/login.js"?>></script>
     <?php include __DIR__ . '/../views/footer.php'; ?>
 </body>
