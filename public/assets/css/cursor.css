@@ -1,0 +1,47 @@
+body {
+    overflow: hidden;
+}
+
+#cursor-box-parent {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#cursor-box {
+    transform-origin: center;
+    transform: translate(0, 0);
+    position: absolute;
+    pointer-events: none;
+    z-index: 15000;
+    border-style: solid;
+    border-color: dodgerblue;
+    border-radius: 50%;
+    opacity: 0;
+    width: 70px;
+    height: 70px;
+}
+
+.animated {
+    animation: cursor 0.5s ease;
+}
+
+@keyframes cursor {
+    0% {
+        width: 15px;
+        height: 15px;
+        border-width: 1px;
+        opacity: 1;
+    }
+    100% {
+        width: 70px;
+        height: 70px;
+        border-width: 7px;
+        opacity: 0;
+    }
+}

@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --border-color: dodgerblue;
+    --grey-color: rgba(206, 206, 206, 0.2);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Nunito", sans-serif;
+    font-weight: 300;
+}
+
+body {
+    background-color: rgba(0, 176, 255, 0.5);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden !important;
+}
+
+select {
+    width: 90%;
+    border: 1px solid var(--grey-color);
+    height: 50%;
+    outline: none;
+}
+
+#wrapper {
+    background-color: white;
+    width: 70%;
+    height: 80%;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(128, 128, 128, 0.75);
+    display: flex;
+    flex-direction: row;
+}
+
+#wrapper #registration-icon {
+    height: 100%;
+    width: 45%;
+    border-radius: 15px 0 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 2%;
+}
+
+#wrapper #registration-icon img {
+    width: 90%;
+    height: 90%;
+}
+
+#wrapper #registration-form {
+    height: 100%;
+    width: 55%;
+    border-radius: 0 15px 15px 0;
+    padding: 5%;
+}
+
+#wrapper #registration-form h1 {
+    font-weight: bolder;
+    font-size: 2rem;
+    color: #6393FF;
+    margin-bottom: 5%;
+}
+
+#wrapper #registration-form form {
+    width: 100%;
+    height: 90%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+}
+
+#wrapper #registration-form form .form-box {
+    width: 100%;
+    height: 60%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+#wrapper #registration-form form .form-box:nth-child(2), #wrapper #registration-form form .form-box:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#wrapper #registration-form form .form-box:nth-child(2) .fields {
+    width: 95%;
+}
+
+#wrapper #registration-form form .form-box:last-child .fields {
+    width: 100%;
+    height: 60%;
+}
+
+#wrapper #registration-form form .form-box:nth-child(2) .fields input {
+    width: 100%;
+}
+
+#wrapper #registration-form form .form-box .fields, #wrapper #registration-form form .form-box:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-evenly;
+}
+
+#wrapper #registration-form form .form-box .fields input {
+    width: 90%;
+    border: none;
+    background-color: var(--grey-color);
+    border-radius: 5px;
+    height: 50%;
+    padding: 3%;
+    outline: none;
+}
+
+#wrapper #registration-form form .form-box .fields input:focus {
+    background-color: white;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: 0 0 2px #6393FF !important;
+}
+
+#wrapper #registration-form form .form-box .fields #pass-block {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 90%;
+    height: 50%;
+}
+
+#wrapper #registration-form form .form-box .fields #pass-block input {
+    width: 80% !important;
+    height: 100%;
+    border-radius: 5px 0 0 5px !important;
+    letter-spacing: 0.1rem;
+    font-size: 14px;
+}
+
+#wrapper #registration-form form .form-box .fields #pass-block input:focus {
+    border: none !important;
+    background-color: var(--grey-color) !important;
+    box-shadow: none !important;
+}
+
+#wrapper #registration-form form .form-box .fields #pass-block #eye {
+    color: var(--border-color);
+    height: 100%;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--grey-color);
+    border-radius: 0 5px 5px 0;
+}
+
+#wrapper #registration-form form .form-box .fields #btn {
+    color: white;
+    width: 95%;
+    border: none;
+    background-color: var(--border-color);
+    height: 100%;
+    border-radius: 5px;
+    opacity: 0.7;
+    transition: opacity 1s;
+    text-align: center;
+}
+
+#wrapper #registration-form form .form-box .fields #btn .fa {
+    margin-left: 3%;
+}
+
+#wrapper #registration-form form .form-box .fields #btn:hover {
+    opacity: 1;
+}

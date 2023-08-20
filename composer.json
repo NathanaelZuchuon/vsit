@@ -1,0 +1,16 @@
+{
+    "name": "bz/vsit",
+    "description": "Join the most ergonomic visit management platform",
+    "authors": [
+        {
+            "name": "Nathanael Zuchuon",
+            "email": "nzuchuon@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "vsit\\": "../vsit/"
+        }
+    },
+    "require": {}
+}

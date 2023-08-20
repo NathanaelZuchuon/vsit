@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+    --fa-color: rgba(0, 0, 0, 0.5);
+    --active-color: rgba(128, 128, 128, 0.1);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Nunito", sans-serif;
+}
+
+.active {
+    background-color: var(--active-color);
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-image: url('http://127.0.0.1/vsit/public/assets/icons/dashboard.jpg');
+    background-attachment: fixed;
+    overflow: hidden !important;
+    background-size: cover;
+    background-position: center;
+}
+
+main {
+    width: 90%;
+    height: 85%;
+    background-color: rgba(125, 125, 125, 0.45);
+    border: none;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+main aside {
+    height: 100%;
+    background-color: white;
+    width: 490px;
+    border-radius: 20px 0 0 20px;
+    font-size: 14px;
+    color: var(--fa-color);
+    padding: 10px 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    font-weight: bold;
+}
+
+main aside img {
+    width: 10%;
+    height: 10%;
+    align-self: center;
+}
+
+main aside #wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+main #content {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    border-radius: 0 20px 20px 0;
+}
+
+/* ------ */
+main aside #wrapper #infos, main aside #wrapper #operations {
+    width: 100%;
+}
+
+main aside #wrapper #infos .infos-box, main aside #wrapper #operations .operations-box {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 1fr;
+    padding: 10px 5px;
+    transition: background-color .5s;
+    border-radius: 10px;
+    margin: 5px 0;
+}
+
+main aside #wrapper #infos .infos-box:hover, main aside #wrapper #operations .operations-box:hover {
+    background-color: var(--active-color);
+}
+
+main aside #wrapper #infos .infos-box span, main aside #wrapper #operations .operations-box span {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+main aside #wrapper #infos .infos-box span a, main aside #wrapper #operations .operations-box span a {
+    text-decoration: none;
+    color: inherit;
+}
+
+main aside #wrapper #infos .infos-box .infos-box-icon, main aside #wrapper #operations .operations-box .operations-box-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main aside #wrapper #operations .operations-box .operations-box-icon .fa, main aside #wrapper #infos .infos-box .infos-box-icon .fa {
+    width: 30px;
+    height: 30px;
+    color: var(--fa-color);
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main aside #wrapper #infos .infos-box .infos-box-icon img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+}
+/* ------ */
+
+footer {
+    color: white;
+}
